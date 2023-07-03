@@ -1,0 +1,40 @@
+/* Styling for the footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Styling for the footer content */
+  .footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  /* Styling for each footer section */
+  .footer-section {
+    flex-basis: 20%;
+    text-align: left;
+  }
+  
+  /* Animation for fading in the footer content */
+  .fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  
+  /* Animation keyframes */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,52 @@
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.container {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
+.navbar-brand {
+    font-family: 'Old Standard TT', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.navProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-right: -20px;
+}
+
+.dropdown-item {
+    color: white;
+    cursor: pointer;
+}
+
+.profileMenu {
+    border-radius: 0;
+    right: 0
+}
+
+.dropdown-toggle:hover {
+    color: white;
+}

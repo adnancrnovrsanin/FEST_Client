@@ -1,0 +1,18 @@
+.table {
+    width: fit-content;
+    margin-inline: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #dee2e6;
+}
+
+.tableButtons {
+    margin-inline: 1rem;
+}
+
+.allTheatresContainer {
+    min-height: 100vh;
+}
