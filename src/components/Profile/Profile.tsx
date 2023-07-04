@@ -1,49 +1,69 @@
-import React from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './Profile.css';
 import slika from './download.jpg'
+import { useParams } from 'react-router-dom';
+import { useStore } from '../../stores/store';
+import UserStore from '../../stores/userStore';
+import { act } from 'react-dom/test-utils';
+import InitialLoader from '../InitialLoader';
+import { Role } from '../../common/interfaces/UserInterfaces';
+import { Box, Tab, Tabs } from '@mui/material';
+import { observer } from 'mobx-react-lite';
 
-const ProfilePage = () => {
-  const userProfile = {
-    name: 'John Doe',
-    username: 'johndoe',
-    email: 'johndoe@example.com',
-    id: '123456',
-    picture: {slika},
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla ut justo sed scelerisque.',
-    location: 'New York, USA',
-    interests: ['Theatre', 'Movies', 'Music'],
-  };
+const Profile = () => {
+  const { id } = useParams();
+  const { profileStore, userStore } = useStore()
+  const { actor, getActor, loading } = profileStore
+  const { isLoggedIn, user } = userStore
+
+
+  useEffect(() => { if (id) getActor(id) }, [getActor, id])
+
+  if (loading) return <InitialLoader adding='actor' />
+
+  if (!actor) return <h1>404 not found</h1>
+
+  function handleChange(event: SyntheticEvent<Element, Event>, value: any): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <div className="profile-container">
       <div className="profile-card">
         <img src={slika} alt="Profile" className="profile-picture" />
         <div className="profile-details">
-          <h2>{userProfile.name}</h2>
-          <p>@{userProfile.username}</p>
+          <h2>{actor.name}</h2>
+          <p>@{actor.surname}</p>
           <div className="profile-info">
             <div>
-              <p>Email: {userProfile.email}</p>
-              <p>ID: {userProfile.id}</p>
-              <p>Location: {userProfile.location}</p>
+              <p>Email: {actor.email}</p>
             </div>
             <div>
-              <p>Interests:</p>
-              <ul>
-                {userProfile.interests.map((interest, index) => (
-                  <li key={index}>{interest}</li>
-                ))}
-              </ul>
+              {
+                isLoggedIn && user?.role === Role.ACTOR && (
+                  <div>
+                    <Tabs
+                      onChange={handleChange}
+                      textColor="secondary"
+                      indicatorColor="secondary"
+                      aria-label="secondary tabs example"
+                    >
+                      <Tab value="one" label="Item One" />
+                      <Tab value="two" label="Item Two" />
+                      <Tab value="three" label="Item Three" />
+                    </Tabs>
+                  </div>
+                )
+              }
             </div>
-          </div>
-          <div className="bio">
-            <h3>Bio:</h3>
-            <p>{userProfile.bio}</p>
           </div>
         </div>
       </div>
     </div>
+
+
+
   );
 };
 
-export default ProfilePage;
+export default observer(Profile);

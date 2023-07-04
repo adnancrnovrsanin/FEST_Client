@@ -7,6 +7,7 @@ import { CreateFestivalDto, Festival, FestivalDto, ShowFestivalApplicationDto } 
 import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
 import { CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
+import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
 
 axios.defaults.baseURL = API_URL;
 
@@ -77,6 +78,16 @@ const TheatreRequests = {
     delete: (id: string) => requests.del<void>(`/theatre/${id}`),
 }
 
+const ProfileRequests = {
+    actordetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
+    reviewerdetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
+    managerdetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
+    updateactor: (actor: ActorProfile) => requests.put<ActorProfile>(`/profile/editactor`, actor),
+    updatereviewer: (reviewer: ReviewerProfile) => requests.put<ReviewerProfile>(`/profile/editreviewer`, reviewer),
+    updatemanager: (manager: ManagerProfile) => requests.put<ManagerProfile>(`/profile/editmanager`, manager),
+
+}
+
 const AuditionRequests = {
     create: (audition: CreateAuditionDto) => requests.post<void>('/audition', audition),
 };
@@ -86,6 +97,7 @@ const agent = {
     FestivalRequests,
     TheatreRequests,
     AuditionRequests,
+    ProfileRequests
 }
 
 export default agent;

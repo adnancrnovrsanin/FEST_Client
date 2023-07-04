@@ -10,6 +10,7 @@ import ShowSearchPage from "../pages/ShowSearchPage/ShowSearchPage";
 import FestivalPage from "../pages/FestivalPage/FestivalPage";
 import FestivalSearchPage from "../pages/FestivalSearchPage/FestivalSearchPage";
 import FestivalRegisterPage from "../pages/FestivalRegisterPage/FestivalRegisterPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 export const routes: RouteObject[] = [
     {
@@ -27,6 +28,7 @@ export const routes: RouteObject[] = [
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
+            {path: '/profile/actor/:id', element: <ProfilePage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
         ]
