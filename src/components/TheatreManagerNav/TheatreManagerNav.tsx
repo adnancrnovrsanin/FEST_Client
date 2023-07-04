@@ -9,6 +9,12 @@ const TheatreManagerNav = () => {
                     Festivals
                 </Link>
             </li>
+
+            <li className="nav-item">
+                <Link to="/shows/unappointed" className="nav-link" aria-current="page">
+                    Unappointed shows
+                </Link>
+            </li>
         </>
     )
 }

@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { CreateTheatreDto, EditTheatreDto, Theatre } from "../common/interfaces/TheatreInterfaces";
 import agent from "../api/agent";
+import { store } from "./store";
 
 export default class TheatreStore {
     theatres: Theatre[] = [];
@@ -8,6 +9,16 @@ export default class TheatreStore {
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    get userManagedTheatre() {
+        if (store.userStore.user) {
+            const theatre = this.theatres.find(theatre => {
+                return theatre.managerEmail === store.userStore.user?.email;
+            });
+
+            if (theatre) return theatre;
+        } return null;
     }
 
     getTheatres = async () => {

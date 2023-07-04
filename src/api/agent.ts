@@ -8,6 +8,7 @@ import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
 import { CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
+import { ShowScheduleDto } from '../common/interfaces/ShowInterfaces';
 
 axios.defaults.baseURL = API_URL;
 
@@ -96,6 +97,11 @@ const AuditionRequests = {
     create: (audition: CreateAuditionDto) => requests.post<void>('/audition', audition),
 };
 
+const ScheduleRequests = {
+    editScheduleRequest: (schedule: ShowScheduleDto) => requests.put<void>('/schedule', schedule),
+    getAllUnappointed: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/unappointed/${id}`),
+};
+
 const agent = {
     AccountRequests,
     FestivalRequests,
@@ -103,6 +109,7 @@ const agent = {
     AuditionRequests,
     ProfileRequests,
     ReviewerRequests,
+    ScheduleRequests,
 }
 
 export default agent;

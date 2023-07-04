@@ -3,7 +3,15 @@ import { observer } from "mobx-react-lite";
 
 function InitialLoader({ adding }: { adding: string}) {
     return (
-        <div className="initialLoader">
+        <div
+            style={{
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
             <CircularProgress color='primary'/>
             <Typography sx={{
                 fontSize: "20px",
