@@ -6,7 +6,7 @@ const TheatreManagerNav = () => {
         <>
             <li className="nav-item">
                 <Link to="/festivals" className="nav-link" aria-current="page">
-                    Festivali
+                    Festivals
                 </Link>
             </li>
         </>

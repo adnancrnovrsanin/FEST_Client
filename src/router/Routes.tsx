@@ -11,6 +11,9 @@ import FestivalPage from "../pages/FestivalPage/FestivalPage";
 import FestivalSearchPage from "../pages/FestivalSearchPage/FestivalSearchPage";
 import FestivalRegisterPage from "../pages/FestivalRegisterPage/FestivalRegisterPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import RequireReviewer from "./RequireReviewer";
+import FestivalApplications from "../pages/FestivalApplications/FestivalApplications";
+import FestivalApplication from "../pages/FestivalApplication/FestivalApplication";
 
 export const routes: RouteObject[] = [
     {
@@ -24,6 +27,10 @@ export const routes: RouteObject[] = [
                 {path: '/admin/theatres', element: <Theatres />},
                 {path: '/admin/theatres/create', element: <TheatreFormPage />},
                 {path: '/admin/theatres/:id/edit', element: <TheatreFormPage />},
+            ]},
+            {element: <RequireReviewer />, children: [
+                {path: '/festivals/applications', element: <FestivalApplications />},
+                {path: '/festivals/applications/:id', element: <FestivalApplication />}
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},

@@ -6,6 +6,7 @@ import TheatreStore from "./theatreStore";
 import AuditionStore from "./auditionStore";
 import ShowStore from "./showStore";
 import ProfileStore from "./profileStore";
+import FestivalApplicationStore from "./festivalApplicationStore";
 
 interface Store {
     commonStore: CommonStore;
@@ -15,6 +16,7 @@ interface Store {
     auditionStore: AuditionStore;
     showStore: ShowStore;
     profileStore: ProfileStore;
+    festivalApplicationStore: FestivalApplicationStore;
 }
 
 export const store: Store = {
@@ -25,7 +27,7 @@ export const store: Store = {
     auditionStore: new AuditionStore(),
     showStore: new ShowStore(),
     profileStore : new ProfileStore(),
-
+    festivalApplicationStore: new FestivalApplicationStore()
 }
 
 export const StoreContext = createContext(store);

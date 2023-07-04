@@ -3,7 +3,7 @@ import { API_URL } from '../common/constants';
 import { store } from '../stores/store';
 import { toast } from 'react-toastify';
 import { LoginRequestDto, LoginResponseDto, RegisterRequestDto, RegisterResponseDto } from '../common/interfaces/AuthInterfaces';
-import { CreateFestivalDto, Festival, FestivalDto, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
+import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, Festival, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
 import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
 import { CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
@@ -68,6 +68,7 @@ const FestivalRequests = {
     update: (festival: FestivalDto) => requests.put<FestivalDto>(`/festival`, festival),
     delete: (id: string) => requests.del<void>(`/festival/${id}`),
     apply: (festival: ShowFestivalApplicationDto) => requests.post<void>('/festival/apply', festival),
+    allApplications: () => requests.get<ShowFestivalApplication[]>('/festival/applications'),
 }
 
 const TheatreRequests = {
@@ -85,7 +86,10 @@ const ProfileRequests = {
     updateactor: (actor: ActorProfile) => requests.put<ActorProfile>(`/profile/editactor`, actor),
     updatereviewer: (reviewer: ReviewerProfile) => requests.put<ReviewerProfile>(`/profile/editreviewer`, reviewer),
     updatemanager: (manager: ManagerProfile) => requests.put<ManagerProfile>(`/profile/editmanager`, manager),
+}
 
+const ReviewerRequests = {
+    reviewShowRequest: (request: CreateShowFestivalApplicationReviewDto) => requests.post<void>('/reviewer/review/show', request), 
 }
 
 const AuditionRequests = {
@@ -97,7 +101,8 @@ const agent = {
     FestivalRequests,
     TheatreRequests,
     AuditionRequests,
-    ProfileRequests
+    ProfileRequests,
+    ReviewerRequests,
 }
 
 export default agent;

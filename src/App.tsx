@@ -12,9 +12,6 @@ import InitialLoader from './components/InitialLoader';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer/Footer';
-import FeaturedShows from './components/FeatureShows/FeatureShows';
-import CurrentShows from './components/CurrentShows/CurrentShows';
-import Beggin from './components/Beggin/Beggin';
 
 function App() {
   const { commonStore, userStore } = useStore();

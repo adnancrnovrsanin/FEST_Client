@@ -6,6 +6,7 @@ import { stringToColor, stringAvatar } from "../../common/util/usefulFunctions";
 import { useLocation, useNavigate } from "react-router-dom";
 import AdminNav from "../AdminNav";
 import TheatreManagerNav from "../TheatreManagerNav/TheatreManagerNav";
+import ReviewerNav from "../ReviewerNav/ReviewerNav";
 
 const Navbar = () => {
     const { userStore } = useStore();
@@ -38,6 +39,12 @@ const Navbar = () => {
                                     {
                                         user && user.role === "THEATRE_MANAGER" && (
                                             <TheatreManagerNav />
+                                        )
+                                    }
+
+                                    {
+                                        user && user.role === "REVIEWER" && (
+                                            <ReviewerNav />
                                         )
                                     }
 

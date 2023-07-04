@@ -39,3 +39,22 @@ export interface ShowFestivalApplicationDto {
     numberOfActors: number;
     additionalInformation: string;
 }
+
+export interface ShowFestivalApplication {
+    id: string;
+    theatreId: string
+    festivalId: string
+    serialNumber: number
+    name: string
+    directorName: string
+    storyWriterName: string
+    lengthOfPlay: number
+    additionalInformation: string
+    numberOfActors: number
+}
+
+export interface CreateShowFestivalApplicationReviewDto {
+    showFestivalApplicationId: string;
+    reviewerId: string;
+    acceptable: boolean;
+}
