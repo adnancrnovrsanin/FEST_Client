@@ -91,6 +91,7 @@ const AdminCreateFestival = () => {
                                     address: values.organizer.address,
                                     phoneNumber: values.organizer.phoneNumber,
                                     yearOfCreation: values.organizer.yearOfCreation,
+                                    managerEmail: values.organizer.managerEmail,
                                 } : null
                             };
     

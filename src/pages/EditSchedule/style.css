@@ -1,0 +1,16 @@
+.editSchedulePageContainer {
+    min-height: 100vh;
+    width: 75%;
+    padding: 2rem 0;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scheduleEditForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}

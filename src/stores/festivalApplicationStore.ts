@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { store } from "./store";
 import { CreateShowFestivalApplicationReviewDto, ShowFestivalApplication } from "../common/interfaces/FestivalInterfaces";
+import { toast } from "react-toastify";
 
 export default class FestivalApplicationStore {
     loading = false;
@@ -45,6 +46,7 @@ export default class FestivalApplicationStore {
             await agent.ReviewerRequests.reviewShowRequest(request);
             runInAction(() => {
                 this.loading = false;
+                toast.success("Successfully reviewed festival application!");
             });
         } catch (error) {
             console.log(error);
