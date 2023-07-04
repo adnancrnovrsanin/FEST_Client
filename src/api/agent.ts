@@ -8,6 +8,7 @@ import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
 import { CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
+import { ActorShowRole } from '../common/interfaces/ActorShowRole';
 
 axios.defaults.baseURL = API_URL;
 
@@ -80,6 +81,7 @@ const TheatreRequests = {
 }
 
 const ProfileRequests = {
+    actingroledetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles/${id}`),
     actordetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
     reviewerdetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
     managerdetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
