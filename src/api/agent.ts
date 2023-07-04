@@ -81,6 +81,7 @@ const TheatreRequests = {
 }
 
 const ProfileRequests = {
+    actingroledetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles/${id}`),
     actordetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
     reviewerdetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
     managerdetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),

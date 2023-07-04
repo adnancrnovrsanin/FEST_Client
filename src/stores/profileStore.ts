@@ -1,15 +1,33 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { ActorProfile,ReviewerProfile,ManagerProfile} from "../common/interfaces/ProfileInterfaces";
 import agent from "../api/agent";
+import { ActorShowRole } from "../common/interfaces/ActorShowRole";
 
 
 export default class ProfileStore{
     loading = false;
+    actingroles: ActorShowRole[] = [];
     actor : ActorProfile | null = null;
     reviewer : ReviewerProfile | null = null;
     manager : ManagerProfile | null = null;
     constructor(){
         makeAutoObservable(this);
+    }
+    getActingRoles = async(id: string) => {
+        try {
+            this.loading = true;
+            const roles = await agent.ProfileRequests.actingroledetails(id)
+            runInAction(() => {
+                this.actingroles = roles;
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loading = false;
+            });
+
+        }
     }
     getActor = async (id : string) =>{
         try {

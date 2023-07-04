@@ -13,11 +13,18 @@ import { observer } from 'mobx-react-lite';
 const Profile = () => {
   const { id } = useParams();
   const { profileStore, userStore } = useStore()
-  const { actor, getActor, loading } = profileStore
+  const { actor, getActor, loading, actingroles, getActingRoles } = profileStore
   const { isLoggedIn, user } = userStore
+  const divStyle = {
+    backgroundColor: '#f1f1f1',
+    padding: '20px',
+    marginBottom: '10px',
+  };
 
 
   useEffect(() => { if (id) getActor(id) }, [getActor, id])
+  useEffect(() => { if (id) getActingRoles(id) }, [getActingRoles, id])
+
 
   if (loading) return <InitialLoader adding='actor' />
 
@@ -32,32 +39,56 @@ const Profile = () => {
       <div className="profile-card">
         <img src={slika} alt="Profile" className="profile-picture" />
         <div className="profile-details">
-          <h2>{actor.name}</h2>
-          <p>@{actor.surname}</p>
+          <h2>{actor.name} {actor.surname}</h2>
+          <p>Actor</p>
           <div className="profile-info">
             <div>
               <p>Email: {actor.email}</p>
             </div>
-            <div>
-              {
-                isLoggedIn && user?.role === Role.ACTOR && (
-                  <div>
-                    <Tabs
-                      onChange={handleChange}
-                      textColor="secondary"
-                      indicatorColor="secondary"
-                      aria-label="secondary tabs example"
-                    >
-                      <Tab value="one" label="Item One" />
-                      <Tab value="two" label="Item Two" />
-                      <Tab value="three" label="Item Three" />
-                    </Tabs>
-                  </div>
-                )
-              }
-            </div>
+
           </div>
         </div>
+      </div>
+      <div>
+        {
+          isLoggedIn && user?.role === Role.ACTOR && (
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={divStyle}>
+                  <h3>Pictures</h3>
+                  <p>This is the content of Div 1.</p>
+                </div>
+
+                <div style={divStyle}>
+                  <h3>Auditions</h3>
+                  <p>This is the content of Div 2.</p>
+                </div>
+
+                <div style={divStyle}>
+                  <h3>Roles</h3>
+                  <p>{
+                    actingroles.length > 0 ? (
+                      actingroles.map(role => (
+                        <tr key={role.actor.id}>
+                          <td>{role.showRoleName}</td>
+                          <td>{role.pay}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                      <td colSpan={3}> There are no acting roles</td>
+                      </tr>
+                    )
+
+
+                  }</p>
+
+                </div>
+              </div>
+
+            </div>
+          )
+        }
       </div>
     </div>
 
