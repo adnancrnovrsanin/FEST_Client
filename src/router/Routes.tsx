@@ -14,6 +14,9 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import RequireReviewer from "./RequireReviewer";
 import FestivalApplications from "../pages/FestivalApplications/FestivalApplications";
 import FestivalApplication from "../pages/FestivalApplication/FestivalApplication";
+import ReviewerNav from "../components/ReviewerNav/ReviewerNav";
+import ReviewerProfile from "../components/Profile/ReviewerProfile";
+import ManagerProfile from "../components/Profile/ManagerProfile";
 
 export const routes: RouteObject[] = [
     {
@@ -36,6 +39,8 @@ export const routes: RouteObject[] = [
             {path: '/festivals/:id', element: <FestivalPage />},
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
             {path: '/profile/actor/:id', element: <ProfilePage />},
+            {path: '/profile/reviewer/:id', element: <ReviewerProfile />},
+            {path: '/profile/manager/:id', element: <ManagerProfile />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
         ]
