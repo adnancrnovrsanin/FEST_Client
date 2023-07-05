@@ -63,7 +63,7 @@ const EditSchedule = () => {
                             id: selectedSchedule.id,
                             showName: values.showName,
                             lengthOfPlay: values.lengthOfPlay,
-                            timeOfPlay: values.timeOfPlay.toUTCString(),
+                            timeOfPlay: values.timeOfPlay.toISOString(),
                             festivalId: selectedSchedule.festivalId,
                             theatreId: selectedSchedule.theatreId,
                             showId: selectedSchedule.showId,
@@ -79,8 +79,8 @@ const EditSchedule = () => {
                     {
                         ({ values, setFieldValue, isSubmitting, dirty }) => (
                             <Form className="scheduleEditForm">
-                                <CustomTextInput name="showName" label="Name of the show:" placeholder="Enter the name of the show" readonly/>
-                                <CustomTextInput name="lengthOfPlay" label="Length of the show (in minutes):" placeholder="Enter the length of play" type="number" readonly />
+                                <CustomTextInput name="showName" label="Name of the show:" placeholder="Enter the name of the show" readOnly/>
+                                <CustomTextInput name="lengthOfPlay" label="Length of the show (in minutes):" placeholder="Enter the length of play" type="number" readOnly />
                                 <DateTimePicker 
                                     label="Start date"
                                     value={moment(values.timeOfPlay)}

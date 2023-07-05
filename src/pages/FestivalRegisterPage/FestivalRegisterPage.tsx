@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { ShowFestivalApplicationDto } from "../../common/interfaces/FestivalInterfaces";
 import agent from "../../api/agent";
 import InitialLoader from "../../components/InitialLoader";
+import { toast } from "react-toastify";
 
 interface FestivalRegisterFormValues {
     serialNumber: number;
@@ -78,6 +79,8 @@ const FestivalRegisterPage = () => {
 
                                 await agent.FestivalRequests.apply(registerRequest);
 
+                                toast.success("Successfully applied for festival!")
+
                                 navigate('/festivals');
                             } catch (error) {
                                 console.log(error);
@@ -107,7 +110,7 @@ const FestivalRegisterPage = () => {
                                     isSubmitting ? (
                                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     ) : (
-                                        <span>Login</span>
+                                        <span>Submit</span>
                                     )
                                 }
                             </button>

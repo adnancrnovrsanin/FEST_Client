@@ -26,10 +26,6 @@ const Navbar = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="nav justify-content-end">
-                                    <li className="nav-item">
-                                        <a className="nav-link active" aria-current="page">Active</a>
-                                    </li>
-
                                     {
                                         user && isAdmin && (
                                             <AdminNav />

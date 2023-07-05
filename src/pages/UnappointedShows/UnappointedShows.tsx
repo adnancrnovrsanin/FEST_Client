@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import InitialLoader from "../../components/InitialLoader";
+import ScheduleCard from "../../components/ScheduleCard";
 
 const UnappointedShows = () => {
     const { showStore, theatreStore } = useStore();
@@ -33,52 +34,18 @@ const UnappointedShows = () => {
                 {
                     unappointedShows.length > 0 ? (
                         unappointedShows.map(show => (
-                            <Card sx={{ 
-                                width: "300px",
-                                height: "200px",
-                                margin: "10px",
-                                boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-                                borderRadius: "10px",
-                            }}>
-                                <CardActionArea
-                                    sx={{
-                                        height: "100%",
-                                        width: "100%",
-                                        padding: "10px",
-                                    }}
-                                    onClick={() => navigate(`/shows/edit/schedule/${show.id}`)}
-                                >
-                                    <CardContent
-                                        sx={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            alignItems: "flex-start",
-                                            gap: "10px",
-                                            height: "100%",
-                                            padding: "10px",
-                                        }}
-                                    >
-                                        <Typography>
-                                            Show name: <span>{show.showName}</span>
-                                        </Typography>
-
-                                        <Typography>
-                                            Festival name: <span>{show.festivalName}</span>
-                                        </Typography>
-
-                                        <Typography>
-                                            Theatre name: <span>{show.theatreName}</span>
-                                        </Typography>
-
-                                        <Typography>
-                                            Length of play: <span>{show.lengthOfPlay}</span>
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                            <ScheduleCard 
+                                show={show}
+                                onClick={() => navigate(`/shows/edit/schedule/${show.id}`)}
+                                key={show.id}
+                            />
                         ))
                     ) : (
-                        <Typography>
+                        <Typography
+                            sx={{
+                                margin: "auto"
+                            }}
+                        >
                             There are no unappointed shows for your theatre.
                         </Typography>
                     )

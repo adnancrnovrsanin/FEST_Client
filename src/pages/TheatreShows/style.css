@@ -1,13 +1,14 @@
-.festivalSearchPageContainer {
+.theatreShowsPageContainer {
     min-height: 100vh;
-    width: 75%;
-    align-self: center;
     padding: 2rem 0;
+    align-self: center;
+    width: 75%;
 }
 
-.festivalCards {
+.theatreShows {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    place-items: center;
     grid-gap: 1rem;
-    padding: 1rem;
+    padding: 1rem 0;
 }

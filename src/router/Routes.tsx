@@ -17,6 +17,8 @@ import FestivalApplication from "../pages/FestivalApplication/FestivalApplicatio
 import RequireTheatreManager from "./RequireTheatreManager";
 import UnappointedShows from "../pages/UnappointedShows/UnappointedShows";
 import EditSchedule from "../pages/EditSchedule/EditSchedule";
+import TheatreShows from "../pages/TheatreShows/TheatreShows";
+import ShowSchedule from "../pages/ShowSchedule/ShowSchedule";
 
 export const routes: RouteObject[] = [
     {
@@ -37,14 +39,16 @@ export const routes: RouteObject[] = [
             ]},
             {element: <RequireTheatreManager />, children: [
                 {path: '/shows/unappointed', element: <UnappointedShows />},
+                {path: '/shows/appointed', element: <TheatreShows />},
                 {path: '/shows/edit/schedule/:id', element: <EditSchedule />}
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
             {path: '/profile/actor/:id', element: <ProfilePage />},
-            {path: '/profile/reviewer/:id', element: <ReviewerProfile />},
-            {path: '/profile/manager/:id', element: <ManagerProfile />},
+            {path: '/shows/:id', element: <ShowSchedule />},
+            // {path: '/profile/reviewer/:id', element: <ReviewerProfile />},
+            // {path: '/profile/manager/:id', element: <ManagerProfile />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
         ]
