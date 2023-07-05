@@ -68,7 +68,22 @@ const Navbar = () => {
                                                     }} />
                                                 </div>
                                                 <ul className="dropdown-menu profileMenu" data-bs-theme="dark">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                                    {
+                                                         user && user.role === "THEATRE_MANAGER" && (
+                                                            <li><a className="dropdown-item" href={`/profile/manager/${user.id}`}>Profile</a></li>
+                                                         )
+                                                         
+                                                    }
+                                                    {
+                                                        user && user.role === "ACTOR" && (
+                                                            <li><a className="dropdown-item" href={`/profile/actor/${user.id}`}>Profile</a></li>
+                                                         )
+                                                    }
+                                                     {
+                                                        user && user.role === "REVIEWER" && (
+                                                            <li><a className="dropdown-item" href={`/profile/reviewer/${user.id}`}>Profile</a></li>
+                                                         )
+                                                    }
                                                     <li><a className="dropdown-item" href="#">Another action</a></li>
                                                     <li><hr className="dropdown-divider" /></li>
                                                     <li><a className="dropdown-item" onClick={() => logout()}>Logout</a></li>

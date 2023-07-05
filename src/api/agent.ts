@@ -6,10 +6,11 @@ import { LoginRequestDto, LoginResponseDto, RegisterRequestDto, RegisterResponse
 import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, Festival, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
 import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
-import { CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
+import { Audition, CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
 import { ShowScheduleDto } from '../common/interfaces/ShowInterfaces';
 import { ActorShowRole } from '../common/interfaces/ActorShowRole';
+import { Photo } from '../common/interfaces/Photo';
 
 axios.defaults.baseURL = API_URL;
 
@@ -82,13 +83,16 @@ const TheatreRequests = {
 }
 
 const ProfileRequests = {
-    actingroledetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles/${id}`),
-    actordetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
-    reviewerdetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
-    managerdetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
-    updateactor: (actor: ActorProfile) => requests.put<ActorProfile>(`/profile/editactor`, actor),
-    updatereviewer: (reviewer: ReviewerProfile) => requests.put<ReviewerProfile>(`/profile/editreviewer`, reviewer),
-    updatemanager: (manager: ManagerProfile) => requests.put<ManagerProfile>(`/profile/editmanager`, manager),
+    photosDetails: (id : string) => requests.get<Photo[]>(`/profile/photos?Id=${id}`),
+    actingRoleDetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles?Id=${id}`),
+    auditionsReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsreviewed?Id=${id}`),
+    auditionsNotReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsnotreviewed?Id=${id}`),
+    actorDetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
+    reviewerDetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
+    managerDetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
+    updateActor: (actor: ActorProfile) => requests.put<ActorProfile>(`/profile/editactor`, actor),
+    updateReviewer: (reviewer: ReviewerProfile) => requests.put<ReviewerProfile>(`/profile/editreviewer`, reviewer),
+    updateManager: (manager: ManagerProfile) => requests.put<ManagerProfile>(`/profile/editmanager`, manager),
 }
 
 const ReviewerRequests = {
