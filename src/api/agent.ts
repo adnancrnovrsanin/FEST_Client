@@ -105,7 +105,8 @@ const AuditionRequests = {
 
 const ScheduleRequests = {
     editScheduleRequest: (schedule: ShowScheduleDto) => requests.put<void>('/schedule', schedule),
-    getAllUnappointed: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/unappointed/${id}`),
+    getAllTheatreUnappointed: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/unappointed/${id}`),
+    getAllTheatre: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/${id}`),
 };
 
 const agent = {

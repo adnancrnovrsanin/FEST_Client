@@ -12,6 +12,7 @@ import InitialLoader from './components/InitialLoader';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer/Footer';
+import moment from 'moment';
 
 function App() {
   const { commonStore, userStore } = useStore();

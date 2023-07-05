@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 export default class ShowStore {
     unappointedShows: ShowSchedule[] = [];
+    theatreShows: ShowSchedule[] = [];
     loading = false;
 
     constructor() {
@@ -15,12 +16,31 @@ export default class ShowStore {
         this.loading = true;
         this.unappointedShows = [];
         try {
-            const shows = await agent.ScheduleRequests.getAllUnappointed(theatreId);
+            const shows = await agent.ScheduleRequests.getAllTheatreUnappointed(theatreId);
             runInAction(() => {
                 
                 for (let i = 0; i < shows.length; i++) {
                     const show = shows[i];
                     this.unappointedShows.push({...show, timeOfPlay: show.timeOfPlay === "1/1/0001 12:00:00 AM" ? null : new Date(show.timeOfPlay)});
+                }
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.loading = false);
+        }
+    };
+
+    getAllTheatreShows = async (theatreId: string) => {
+        this.loading = true;
+        this.theatreShows = [];
+        try {
+            const shows = await agent.ScheduleRequests.getAllTheatre(theatreId);
+            runInAction(() => {
+                
+                for (let i = 0; i < shows.length; i++) {
+                    const show = shows[i];
+                    this.theatreShows.push({...show, timeOfPlay: show.timeOfPlay === "1/1/0001 12:00:00 AM" ? null : new Date(show.timeOfPlay)});
                 }
                 this.loading = false;
             });

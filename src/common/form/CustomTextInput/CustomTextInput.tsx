@@ -5,7 +5,7 @@ interface Props {
     name: string;
     label?: string;
     type?: string;
-    readonly?: boolean;
+    readOnly?: boolean;
 }
 
 const CustomTextInput = (props: Props) => {
@@ -20,7 +20,7 @@ const CustomTextInput = (props: Props) => {
                 className={`form-control shadow-none ${meta.touched && meta.error && "is-invalid"}`}
                 placeholder={props?.placeholder ?? undefined}
                 autoComplete="off"
-                readOnly={props.readonly}
+                readOnly={props.readOnly}
             />
             {meta.touched && meta.error ? (
                 <div className="invalid-feedback">{meta.error}</div>
