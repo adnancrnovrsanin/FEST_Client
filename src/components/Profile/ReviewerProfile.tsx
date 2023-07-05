@@ -38,7 +38,7 @@ const Profile = () => {
         <img src={slika} alt="Profile" className="profile-picture" />
         <div className="profile-details">
           <h2>{reviewer.name} {reviewer.surname}</h2>
-          <p>Actor</p>
+          <p>Reviewer</p>
           <div className="profile-info">
             <div>
               <p>Email: {reviewer.email}</p>

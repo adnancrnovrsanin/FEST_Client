@@ -13,7 +13,12 @@ import { observer } from 'mobx-react-lite';
 const Profile = () => {
   const { id } = useParams();
   const { profileStore, userStore } = useStore()
-  const { actor, getActor, loading, actingroles, getActingRoles } = profileStore
+  const { actor, getActor,
+    loading, actingroles, getActingRoles,
+    auditionsnotreviewed, getAuditionsNotReviewed,
+    auditionsreviewed, getAuditionsReviewed,
+    photos,getPhoto
+  } = profileStore
   const { isLoggedIn, user } = userStore
   const divStyle = {
     backgroundColor: '#f1f1f1',
@@ -24,6 +29,10 @@ const Profile = () => {
 
   useEffect(() => { if (id) getActor(id) }, [getActor, id])
   useEffect(() => { if (id) getActingRoles(id) }, [getActingRoles, id])
+  useEffect(() => { if (id) getAuditionsReviewed(id) }, [getAuditionsReviewed, id])
+  useEffect(() => { if (id) getAuditionsNotReviewed(id) }, [getAuditionsNotReviewed, id])
+  useEffect(() => { if (id) getPhoto(id) }, [getPhoto, id])
+
 
 
   if (loading) return <InitialLoader adding='actor' />
@@ -55,33 +64,95 @@ const Profile = () => {
             <div>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={divStyle}>
-                  <h3>Pictures</h3>
-                  <p>This is the content of Div 1.</p>
+                  <h3>Photos</h3>
+                  <table>
+                    <tbody>{
+                      photos.length > 0 ? (
+                        photos.map(photo => (
+
+                          <tr key={photo.id}>
+                            <td>{photo.url}</td>
+                          
+
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}> There are no photos</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
                 </div>
 
                 <div style={divStyle}>
-                  <h3>Auditions</h3>
-                  <p>This is the content of Div 2.</p>
+                  <h3>Reviewed Auditions</h3>
+                  <table>
+                    <tbody>{
+                      auditionsreviewed.length > 0 ? (
+                        auditionsreviewed.map(reviewed => (
+
+                          <tr key={reviewed.id}>
+                            <td>{reviewed.videoUrl}</td>
+                            <td>{reviewed.description}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}> There are no reviewed auditions</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
+                </div>
+                <div style={divStyle}>
+                  <h3>Unreviewed Auditions</h3>
+                  <table>
+                    <tbody>{
+                      auditionsnotreviewed.length > 0 ? (
+                        auditionsnotreviewed.map(reviewed => (
+
+                          <tr key={reviewed.id}>
+                            <td>{reviewed.videoUrl}</td>
+                            <td>{reviewed.description}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}> There are no unreviewed auditions</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
                 </div>
 
                 <div style={divStyle}>
                   <h3>Roles</h3>
-                  <p>{
-                    actingroles.length > 0 ? (
-                      actingroles.map(role => (
-                        <tr key={role.actor.id}>
-                          <td>{role.showRoleName}</td>
-                          <td>{role.pay}</td>
+                  <table>
+                    <tbody>{
+                      actingroles.length > 0 ? (
+                        actingroles.map(role => (
+
+                          <tr key={role.actor.id}>
+                            <td>{role.showRoleName}</td>
+                            <td>{role.pay}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={3}> There are no acting roles</td>
                         </tr>
-                      ))
-                    ) : (
-                      <tr>
-                      <td colSpan={3}> There are no acting roles</td>
-                      </tr>
-                    )
+                      )
 
 
-                  }</p>
+                    }
+                    </tbody></table>
 
                 </div>
               </div>

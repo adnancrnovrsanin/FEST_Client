@@ -17,6 +17,8 @@ import FestivalApplication from "../pages/FestivalApplication/FestivalApplicatio
 import RequireTheatreManager from "./RequireTheatreManager";
 import UnappointedShows from "../pages/UnappointedShows/UnappointedShows";
 import EditSchedule from "../pages/EditSchedule/EditSchedule";
+import ReviewerProfilePage from "../pages/ProfilePage/ReviewerProfilePage";
+import ManagerProfilePage from "../pages/ProfilePage/ManagerProfilePage";
 
 export const routes: RouteObject[] = [
     {
@@ -43,8 +45,8 @@ export const routes: RouteObject[] = [
             {path: '/festivals/:id', element: <FestivalPage />},
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
             {path: '/profile/actor/:id', element: <ProfilePage />},
-            {path: '/profile/reviewer/:id', element: <ReviewerProfile />},
-            {path: '/profile/manager/:id', element: <ManagerProfile />},
+            {path: '/profile/reviewer/:id', element: <ReviewerProfilePage />},
+            {path: '/profile/manager/:id', element: <ManagerProfilePage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
         ]
