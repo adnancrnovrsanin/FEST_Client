@@ -38,6 +38,7 @@ axios.interceptors.response.use(async response => {
                 if (status === 401 && headers['www-authenticate']?.startsWith('Bearer error="invalid_token"')) {
                     store.userStore.logout();
                     toast.info('Session expired - please login again');
+                    break;
                 }
                 toast.error('Error code 401: Unauthorized')
                 break;
@@ -114,6 +115,7 @@ const ScheduleRequests = {
     editScheduleRequest: (schedule: ShowScheduleDto) => requests.put<void>('/schedule', schedule),
     getAllTheatreUnappointed: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/unappointed/${id}`),
     getAllTheatre: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/${id}`),
+    getAll: () => requests.get<ShowScheduleDto[]>('/schedule'),
 };
 
 const agent = {

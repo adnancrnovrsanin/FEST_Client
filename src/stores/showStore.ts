@@ -12,6 +12,25 @@ export default class ShowStore {
         makeAutoObservable(this);
     }
 
+    getAllShows = async () => {
+        this.loading = true;
+        this.theatreShows = [];
+        try {
+            const shows = await agent.ScheduleRequests.getAll();
+            runInAction(() => {
+                
+                for (let i = 0; i < shows.length; i++) {
+                    const show = shows[i];
+                    this.theatreShows.push({...show, timeOfPlay: show.timeOfPlay === "1/1/0001 12:00:00 AM" ? null : new Date(show.timeOfPlay)});
+                }
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.loading = false);
+        }
+    };
+
     getAllTheatreUnappointedShows = async (theatreId: string) => {
         this.loading = true;
         this.unappointedShows = [];

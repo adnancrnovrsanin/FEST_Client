@@ -6,7 +6,7 @@ import InitialLoader from "../../components/InitialLoader";
 import './style.css';
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
-import { CreateTheatreDto, EditTheatreDto, Theatre } from "../../common/interfaces/TheatreInterfaces";
+import { CreateTheatreDto, EditTheatreDto, Theatre, TheatreFormValues } from "../../common/interfaces/TheatreInterfaces";
 import CustomTextInput from "../../common/form/CustomTextInput/CustomTextInput";
 
 const validate = Yup.object({
@@ -31,16 +31,17 @@ const TheatreFormPage = () => {
         if (id) setSelectedTheatre(theatres.find(t => t.id === id) ?? null);
     }, [id]);
 
-    const initialValues: EditTheatreDto = {
-        id: selectedTheatre === null ? "" : selectedTheatre.id,
+    if (loading) return <InitialLoader adding="" />
+
+    if (id && selectedTheatre === null) return <h1 className="text-center">Theatre not found</h1>
+
+    const initialValues: TheatreFormValues = {
         name: selectedTheatre === null ? "" : selectedTheatre.name,
         address: selectedTheatre === null ? "" : selectedTheatre.address,
         phoneNumber: selectedTheatre === null ? "" : selectedTheatre.phoneNumber,
         yearOfCreation: selectedTheatre === null ? 0 : selectedTheatre.yearOfCreation,
         managerEmail: selectedTheatre === null ? "" : selectedTheatre.managerEmail
     }
-
-    if (loading) return <InitialLoader adding="" />
 
     return (
         <div className="theatreFormPageContainer">

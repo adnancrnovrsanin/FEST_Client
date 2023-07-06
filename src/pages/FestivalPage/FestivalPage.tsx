@@ -5,19 +5,33 @@ import { useStore } from "../../stores/store";
 import { Festival } from "../../common/interfaces/FestivalInterfaces";
 import { useEffect, useState } from "react";
 import { Role } from "../../common/interfaces/UserInterfaces";
+import InitialLoader from "../../components/InitialLoader";
+import ScheduleCard from "../../components/ScheduleCard";
 
 const FestivalPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { festivalStore, userStore } = useStore();
+    const { festivalStore, userStore, showStore } = useStore();
     const { festivals } = festivalStore;
     const { isLoggedIn, user } = userStore;
+    const { getAllTheatreShows, loading, theatreShows } = showStore;
 
     useEffect(() => { setSelectedFestival(festivals.find(f => f.id === id) ?? null) }, [festivals, id]);
 
     const [selectedFestival, setSelectedFestival] = useState<Festival | null>(festivals.find(f => f.id === id) ?? null);
 
+    useEffect(() => {
+        if (selectedFestival)
+            getAllTheatreShows(selectedFestival.id);
+    }, [selectedFestival, getAllTheatreShows]);
+
     if (selectedFestival === null) return (<div>404</div>);
+
+    if (loading) return (
+        <InitialLoader 
+            adding="festival"
+        />
+    );
 
     return (
         <div className="festivalPageContainer">
@@ -48,6 +62,22 @@ const FestivalPage = () => {
                 )
             }
 
+            <div className="shows">
+                <h2>Shows that are available on this festival:</h2>
+                {
+                    theatreShows.length > 0 ? (
+                        theatreShows.map(show => (
+                            <ScheduleCard 
+                                show={show}
+                                key={show.id}
+                                // OnClick={() => navigate(`/shows/${show.id}`)}
+                            />
+                        ))
+                    ) : (
+                        <h3>No shows available</h3>
+                    )
+                }
+            </div>
         </div>
     )
 }

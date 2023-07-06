@@ -1,10 +1,11 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './style.css';
 import CustomTextInput from '../../common/form/CustomTextInput/CustomTextInput';
 import CustomTextAreaInput from '../../common/form/CustomTextAreaInput/CustomTextAreaInput';
 import { LoginRequestDto } from '../../common/interfaces/AuthInterfaces';
 import { useStore } from '../../stores/store';
+import { Typography } from '@mui/material';
 
 const initialValues: LoginRequestDto = {
   email: '',
@@ -25,17 +26,44 @@ export const Login = () => {
   
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        ...initialValues,
+        error: null
+      }}
       validationSchema={validate}
-      onSubmit={values => {
-        login(values.email, values.password);
+      onSubmit={async (values, { setErrors }) => {
+        login(values.email, values.password)
+          .catch(error => {
+            setErrors({ error: 'Invalid email or password' });
+          });
       }}
     >
-      {({ handleSubmit, isSubmitting, isValid, dirty }) => (
+      {({ isSubmitting, dirty, errors }) => (
         <Form className="loginForm">
           <h3 className="mb-3">Login</h3>
           <CustomTextInput label="Email" name="email" placeholder="Enter email" />
           <CustomTextInput label="Password" name="password" type="password" placeholder='Enter password' />
+
+          <ErrorMessage name="error" render={() => {
+            return (
+              <Typography
+                variant="body2"
+                color="error"
+                sx={{ 
+                  mt: 1,
+                  mb: 1,
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  lineHeight: 1.75,
+                  letterSpacing: "0.02857em", 
+                }}
+              >
+                {errors.error}
+              </Typography>
+            );
+          }}/>
+
           <button className="btn btn-dark mt-3 submitBtn" type="submit" disabled={isSubmitting || !dirty}>
             {
               isSubmitting ? (

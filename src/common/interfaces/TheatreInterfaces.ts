@@ -23,3 +23,11 @@ export interface EditTheatreDto {
     yearOfCreation: number;
     managerEmail: string;
 }
+
+export interface TheatreFormValues {
+    name: string;
+    address: string;
+    phoneNumber: string;
+    yearOfCreation: number;
+    managerEmail: string;
+}
