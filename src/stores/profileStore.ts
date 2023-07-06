@@ -4,13 +4,14 @@ import agent from "../api/agent";
 import { ActorShowRole } from "../common/interfaces/ActorShowRole";
 import { Audition } from "../common/interfaces/AuditionInterfaces";
 import { Photo } from "../common/interfaces/Photo";
+import { ActorShowRoleAudition } from "../common/interfaces/ActorShowRoleAudition";
 
 
 export default class ProfileStore{
     loading = false;
     photos : Photo[] = [];
-    auditionsreviewed : Audition[] = [];
-    auditionsnotreviewed : Audition[] = [];
+    auditionsreviewed : ActorShowRoleAudition[] = [];
+    auditionsnotreviewed : ActorShowRoleAudition[] = [];
     actingroles: ActorShowRole[] = [];
     actor : ActorProfile | null = null;
     reviewer : ReviewerProfile | null = null;

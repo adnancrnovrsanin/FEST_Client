@@ -10,7 +10,9 @@ import { Audition, CreateAuditionDto } from '../common/interfaces/AuditionInterf
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
 import { ShowScheduleDto } from '../common/interfaces/ShowInterfaces';
 import { ActorShowRole } from '../common/interfaces/ActorShowRole';
+
 import { Photo } from '../common/interfaces/Photo';
+import { ActorShowRoleAudition } from '../common/interfaces/ActorShowRoleAudition';
 
 axios.defaults.baseURL = API_URL;
 
@@ -85,8 +87,8 @@ const TheatreRequests = {
 const ProfileRequests = {
     photosDetails: (id : string) => requests.get<Photo[]>(`/profile/photos?Id=${id}`),
     actingRoleDetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles?Id=${id}`),
-    auditionsReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsreviewed?Id=${id}`),
-    auditionsNotReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsnotreviewed?Id=${id}`),
+    auditionsReviewedDetails: (id : string) => requests.get<ActorShowRoleAudition[]>(`/profile/auditionsreviewed?Id=${id}`),
+    auditionsNotReviewedDetails: (id : string) => requests.get<ActorShowRoleAudition[]>(`/profile/auditionsnotreviewed?Id=${id}`),
     actorDetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
     reviewerDetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
     managerDetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
