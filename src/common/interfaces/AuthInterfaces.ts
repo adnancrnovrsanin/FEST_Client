@@ -6,6 +6,7 @@ export interface LoginRequestDto {
 }
 
 export interface LoginResponseDto {
+    id: string;
     name: string;
     surname: string;
     email: string;
@@ -21,7 +22,8 @@ export interface RegisterRequestDto {
     role: Role;
 }
 
-export interface RegisterResponseDto {
+export interface AuthUserDto {
+    id: string;
     name: string;
     surname: string;
     email: string;

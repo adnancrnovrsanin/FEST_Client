@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { API_URL } from '../common/constants';
 import { store } from '../stores/store';
 import { toast } from 'react-toastify';
-import { LoginRequestDto, LoginResponseDto, RegisterRequestDto, RegisterResponseDto } from '../common/interfaces/AuthInterfaces';
+import { AuthUserDto, LoginRequestDto, LoginResponseDto, RegisterRequestDto } from '../common/interfaces/AuthInterfaces';
 import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, Festival, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
 import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
@@ -10,7 +10,9 @@ import { Audition, CreateAuditionDto } from '../common/interfaces/AuditionInterf
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
 import { ShowScheduleDto } from '../common/interfaces/ShowInterfaces';
 import { ActorShowRole } from '../common/interfaces/ActorShowRole';
+
 import { Photo } from '../common/interfaces/Photo';
+import { ActorShowRoleAudition } from '../common/interfaces/ActorShowRoleAudition';
 
 axios.defaults.baseURL = API_URL;
 
@@ -25,7 +27,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(async response => {
     return response;
 }, (error: AxiosError) => {
-    const { data, status } = error.response as AxiosResponse;
+    const { data, status, headers } = error.response as AxiosResponse;
 
     if (status) {
         switch (status) {
@@ -33,6 +35,10 @@ axios.interceptors.response.use(async response => {
                 toast.error(data)
                 break;
             case 401:
+                if (status === 401 && headers['www-authenticate']?.startsWith('Bearer error="invalid_token"')) {
+                    store.userStore.logout();
+                    toast.info('Session expired - please login again');
+                }
                 toast.error('Error code 401: Unauthorized')
                 break;
             case 403:
@@ -61,7 +67,8 @@ const requests = {
 const AccountRequests = {
     current: () => requests.get<User>('/account'),
     login: (user: LoginRequestDto) => requests.post<LoginResponseDto>('/account/login', user),
-    register: (user: RegisterRequestDto) => requests.post<RegisterResponseDto>('/account/register', user),
+    register: (user: RegisterRequestDto) => requests.post<AuthUserDto>('/account/register', user),
+    refreshToken: () => requests.post<AuthUserDto>('/account/refreshToken', {})
 }
 
 const FestivalRequests = {
@@ -85,8 +92,8 @@ const TheatreRequests = {
 const ProfileRequests = {
     photosDetails: (id : string) => requests.get<Photo[]>(`/profile/photos?Id=${id}`),
     actingRoleDetails: (id : string) => requests.get<ActorShowRole[]>(`/profile/roles?Id=${id}`),
-    auditionsReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsreviewed?Id=${id}`),
-    auditionsNotReviewedDetails: (id : string) => requests.get<Audition[]>(`/profile/auditionsnotreviewed?Id=${id}`),
+    auditionsReviewedDetails: (id : string) => requests.get<ActorShowRoleAudition[]>(`/profile/auditionsreviewed?Id=${id}`),
+    auditionsNotReviewedDetails: (id : string) => requests.get<ActorShowRoleAudition[]>(`/profile/auditionsnotreviewed?Id=${id}`),
     actorDetails: (id: string) => requests.get<ActorProfile>(`/profile/actor/${id}`),
     reviewerDetails: (id: string) => requests.get<ReviewerProfile>(`/profile/reviewer/${id}`),
     managerDetails: (id: string) => requests.get<ManagerProfile>(`/profile/manager/${id}`),
