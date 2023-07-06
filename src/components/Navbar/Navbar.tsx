@@ -3,7 +3,7 @@ import './style.css';
 import { useStore } from "../../stores/store";
 import { Avatar, Typography } from "@mui/material";
 import { stringToColor, stringAvatar } from "../../common/util/usefulFunctions";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AdminNav from "../AdminNav";
 import TheatreManagerNav from "../TheatreManagerNav/TheatreManagerNav";
 import ReviewerNav from "../ReviewerNav/ReviewerNav";
@@ -26,6 +26,18 @@ const Navbar = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="nav justify-content-end">
+                                    <li className="nav-item">
+                                        <Link to="/festivals" className="nav-link" aria-current="page">
+                                            Festivals
+                                        </Link>
+                                    </li>
+
+                                    <li className="nav-item">
+                                        <Link to="/shows" className="nav-link" aria-current="page">
+                                            Shows
+                                        </Link>
+                                    </li>
+
                                     {
                                         user && isAdmin && (
                                             <AdminNav />

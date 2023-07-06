@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import * as Yup from 'yup';
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const validate = Yup.object({
     name: Yup.string()
@@ -69,6 +70,7 @@ const AdminCreateFestival = () => {
                     initialValues={initialValues}
                     validationSchema={validate}
                     onSubmit={values => {
+
                         if (id) {
                             const newFestival: FestivalDto = {
                                 ...values,
@@ -140,7 +142,7 @@ const AdminCreateFestival = () => {
                                 )}
                             />
 
-                            <button className="btn btn-dark mt-3" type="submit" disabled={isSubmitting || !dirty}>
+                            <button className="btn btn-dark mt-3" type="submit" disabled={isSubmitting || !dirty || values.startDate >= values.endDate}>
                                 {
                                     isSubmitting ? (
                                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

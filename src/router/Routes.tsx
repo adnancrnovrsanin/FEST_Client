@@ -21,12 +21,17 @@ import TheatreShows from "../pages/TheatreShows/TheatreShows";
 import ShowSchedule from "../pages/ShowSchedule/ShowSchedule";
 import ReviewerProfilePage from "../pages/ProfilePage/ReviewerProfilePage";
 import ManagerProfilePage from "../pages/ProfilePage/ManagerProfilePage";
+import RequireAuth from "./RequireAuth";
 
 export const routes: RouteObject[] = [
     {
         path: '/',
         element: <App />,
         children: [
+            {element: <RequireAuth />, children: [
+                {path: '/profile/reviewer/:id', element: <ReviewerProfilePage />},
+                {path: '/profile/manager/:id', element: <ManagerProfilePage />},
+            ]},
             {element: <RequireAdmin />, children: [
                 {path: '/admin/festivals', element: <AdminFestivals />},
                 {path: '/admin/festivals/create', element: <AdminCreateFestival />},
@@ -49,8 +54,7 @@ export const routes: RouteObject[] = [
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
             {path: '/profile/actor/:id', element: <ProfilePage />},
             {path: '/shows/:id', element: <ShowSchedule />},
-            {path: '/profile/reviewer/:id', element: <ReviewerProfilePage />},
-            {path: '/profile/manager/:id', element: <ManagerProfilePage />},
+            {path: '/shows', element: <ShowSearchPage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
         ]

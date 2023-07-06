@@ -26,29 +26,25 @@ export default class UserStore {
     }
 
     login = async (email: string, password: string) => {
-        try {
-            const loginRequest: LoginRequestDto = {
-                email,
-                password
-            };
-            const response = await agent.AccountRequests.login(loginRequest);
-            const user: User = {
-                id: response.id,
-                name: response.name,
-                surname: response.surname,
-                email: response.email,
-                role: response.role
-            }
-            store.commonStore.setToken(response.token);
-            runInAction(() => {
-                this.startRefreshTokenTimer({...user, token: response.token });
-                this.user = user;
-                this.getUser();
-                router.navigate("/");
-            });
-        } catch (error) {
-            console.log(error);
+        const loginRequest: LoginRequestDto = {
+            email,
+            password
+        };
+        const response = await agent.AccountRequests.login(loginRequest);
+        const user: User = {
+            id: response.id,
+            name: response.name,
+            surname: response.surname,
+            email: response.email,
+            role: response.role
         }
+        store.commonStore.setToken(response.token);
+        runInAction(() => {
+            this.startRefreshTokenTimer({...user, token: response.token });
+            this.user = user;
+            this.getUser();
+            router.navigate("/");
+        });
     };
 
     // register = async (user: RegisterRequestDto) => {
@@ -72,6 +68,8 @@ export default class UserStore {
     logout = () => {
         store.commonStore.setToken(null);
         this.user = null;
+        this.stopRefreshTokenTimer();
+        router.navigate("/");
     }
 
     getUser = async () => {
