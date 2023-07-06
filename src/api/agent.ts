@@ -65,7 +65,7 @@ const requests = {
 }
 
 const AccountRequests = {
-    current: () => requests.get<User>('/account'),
+    current: () => requests.get<AuthUserDto>('/account'),
     login: (user: LoginRequestDto) => requests.post<LoginResponseDto>('/account/login', user),
     register: (user: RegisterRequestDto) => requests.post<AuthUserDto>('/account/register', user),
     refreshToken: () => requests.post<AuthUserDto>('/account/refreshToken', {})
