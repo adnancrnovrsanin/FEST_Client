@@ -76,8 +76,17 @@ export default class UserStore {
 
     getUser = async () => {
         try {
-            const user = await agent.AccountRequests.current();
+            const response = await agent.AccountRequests.current();
+            store.commonStore.setToken(response.token);
+            const user: User = {
+                id: response.id,
+                name: response.name,
+                surname: response.surname,
+                email: response.email,
+                role: response.role
+            }
             runInAction(() => {
+                this.startRefreshTokenTimer({...response, token: response.token });
                 this.user = user;
             });
         } catch (error) {
@@ -86,6 +95,7 @@ export default class UserStore {
     }
 
     refreshToken = async () => {
+        this.stopRefreshTokenTimer();
         try {
             const user = await agent.AccountRequests.refreshToken();
             runInAction(() => {
