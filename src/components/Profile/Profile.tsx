@@ -94,9 +94,14 @@ const Profile = () => {
                       auditionsreviewed.length > 0 ? (
                         auditionsreviewed.map(reviewed => (
 
-                          <tr key={reviewed.id}>
-                            <td>{reviewed.videoUrl}</td>
+                          <tr key={reviewed.actorId}>
                             <td>{reviewed.description}</td>
+                            <td>{reviewed.email}</td>
+                            <td>{reviewed.name}</td>
+                            <td>{reviewed.roleName}</td>
+                            <td>{reviewed.showName}</td>
+                            <td>{reviewed.surname}</td>
+
                           </tr>
                         ))
                       ) : (
@@ -116,9 +121,15 @@ const Profile = () => {
                       auditionsnotreviewed.length > 0 ? (
                         auditionsnotreviewed.map(reviewed => (
 
-                          <tr key={reviewed.id}>
-                            <td>{reviewed.videoUrl}</td>
+                          <tr key={reviewed.actorId}>
+                            <td>{reviewed.averageReview}</td>
                             <td>{reviewed.description}</td>
+                            <td>{reviewed.email}</td>
+                            <td>{reviewed.name}</td>
+                            <td>{reviewed.roleName}</td>
+                            <td>{reviewed.showName}</td>
+                            <td>{reviewed.surname}</td>
+
                           </tr>
                         ))
                       ) : (
