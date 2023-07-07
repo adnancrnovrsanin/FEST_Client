@@ -22,6 +22,11 @@ import ShowSchedule from "../pages/ShowSchedule/ShowSchedule";
 import ReviewerProfilePage from "../pages/ProfilePage/ReviewerProfilePage";
 import ManagerProfilePage from "../pages/ProfilePage/ManagerProfilePage";
 import RequireAuth from "./RequireAuth";
+import AboutUsPage from "../pages/AboutUsPage/AboutUsPage";
+import JourneyPage from "../pages/JourneyPage/JourneyPage";
+import TermsAndConditionsPage from "../pages/PolicyPage/PolicyPage";
+import EditActor from "../pages/EditActor/EditActor";
+import SettingsPage from "../pages/SettingsPage/SettingsPage";
 
 export const routes: RouteObject[] = [
     {
@@ -57,6 +62,15 @@ export const routes: RouteObject[] = [
             {path: '/shows', element: <ShowSearchPage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
+            {path: '/about-us', element: <AboutUsPage />},
+            {path: '/journey', element: <JourneyPage />},
+            {path: '/policy', element: <TermsAndConditionsPage />},
+            {path: '/settings', element: <SettingsPage/>},
+            {path: '/profile/editactor/:id', element: <EditActor/>}
+
+
+
+
         ]
     }
 ];

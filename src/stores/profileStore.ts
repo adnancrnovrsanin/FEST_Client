@@ -7,6 +7,7 @@ import { Photo } from "../common/interfaces/Photo";
 import { ActorShowRoleAudition } from "../common/interfaces/ActorShowRoleAudition";
 import { AuditionReviewDto } from "../common/interfaces/AuditionReviewDto";
 import { ShowFestivalApplicationReviewDto } from "../common/interfaces/ShowFestivalApplicationReviewDto";
+import { router } from "../router/Routes";
 
 
 export default class ProfileStore{
@@ -166,6 +167,7 @@ export default class ProfileStore{
             runInAction(()=>{
                 this.getActor(actor.id)
                 this.loading = false;
+                router.navigate('/');
             })
         } catch (error) {
             runInAction(() => {
