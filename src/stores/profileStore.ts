@@ -5,11 +5,16 @@ import { ActorShowRole } from "../common/interfaces/ActorShowRole";
 import { Audition } from "../common/interfaces/AuditionInterfaces";
 import { Photo } from "../common/interfaces/Photo";
 import { ActorShowRoleAudition } from "../common/interfaces/ActorShowRoleAudition";
+import { AuditionReviewDto } from "../common/interfaces/AuditionReviewDto";
+import { ShowFestivalApplicationReviewDto } from "../common/interfaces/ShowFestivalApplicationReviewDto";
+import { router } from "../router/Routes";
 
 
 export default class ProfileStore{
     loading = false;
     photos : Photo[] = [];
+    auditionReview : AuditionReviewDto[] = [];
+    showFestivalApplicationReview : ShowFestivalApplicationReviewDto[] = [];
     auditionsreviewed : ActorShowRoleAudition[] = [];
     auditionsnotreviewed : ActorShowRoleAudition[] = [];
     actingroles: ActorShowRole[] = [];
@@ -25,6 +30,36 @@ export default class ProfileStore{
             const photo = await agent.ProfileRequests.photosDetails(id)
             runInAction(() => {
                 this.photos = photo;
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loading = false;
+            });
+        }
+    }
+    getAuditionReview = async(id: string) => {
+        try {
+            this.loading = true;
+            const auditionreview = await agent.ProfileRequests.auditionReviewDetails(id)
+            runInAction(() => {
+                this.auditionReview = auditionreview;
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loading = false;
+            });
+        }
+    }
+    getShowFestivalApplicationReview = async(id: string) => {
+        try {
+            this.loading = true;
+            const showfestivalapplicationreview = await agent.ProfileRequests.showFestivalApplicationReviewDetails(id)
+            runInAction(() => {
+                this.showFestivalApplicationReview = showfestivalapplicationreview;
                 this.loading = false;
             });
         } catch (error) {
@@ -132,6 +167,7 @@ export default class ProfileStore{
             runInAction(()=>{
                 this.getActor(actor.id)
                 this.loading = false;
+                router.navigate('/');
             })
         } catch (error) {
             runInAction(() => {

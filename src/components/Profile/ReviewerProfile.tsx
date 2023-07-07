@@ -13,7 +13,8 @@ import { observer } from 'mobx-react-lite';
 const Profile = () => {
   const { id } = useParams();
   const { profileStore, userStore } = useStore()
-  const { reviewer, getReviewer, loading } = profileStore
+
+  const { reviewer, getReviewer, loading, photos, getPhoto, auditionReview, getAuditionReview, showFestivalApplicationReview, getShowFestivalApplicationReview } = profileStore
   const { isLoggedIn, user } = userStore
   const divStyle = {
     backgroundColor: '#f1f1f1',
@@ -23,6 +24,7 @@ const Profile = () => {
 
 
   useEffect(() => { if (id) getReviewer(id) }, [getReviewer, id])
+  useEffect(() => { if (id) getPhoto(id) }, [getPhoto, id])
 
   if (loading) return <InitialLoader adding='reviewer' />
 
@@ -43,34 +45,95 @@ const Profile = () => {
             <div>
               <p>Email: {reviewer.email}</p>
             </div>
-            
+
           </div>
+        </div>
+        <div className='button-content'> 
+        <button className="btn btn-edit"><a href="">Edit</a></button>
         </div>
       </div>
       <div>
-              {
-                isLoggedIn && user?.role === Role.REVIEWER && (
-                  <div>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <div style={divStyle}>
-        <h3>Pictures</h3>
-        <p>This is the content of Div 1.</p>
-      </div>
+        {
+          isLoggedIn && user?.role === Role.REVIEWER && (
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={divStyle}>
+                  <h3>Photos</h3>
+                  <table>
+                    <tbody>{
+                      photos.length > 0 ? (
+                        photos.map(photo => (
 
-      <div style={divStyle}>
-        <h3>Auditions</h3>
-        <p>This is the content of Div 2.</p>
-      </div>
+                          <tr key={photo.id}>
+                            <td>{photo.url}</td>
 
-      <div style={divStyle}>
-        <h3>Roles</h3>
-      </div>
-    </div>
-    
-                  </div>
-                )
-              }
+
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}> There are no photos</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
+                </div>
+
+                <div style={divStyle}>
+                  <h3>Reviewed Auditions</h3>
+                  <table>
+                    <tbody>{
+                      auditionReview.length > 0 ? (
+                        auditionReview.map(auditionReview => (
+
+                          <tr key={auditionReview.reviewId}>
+                            <td>{auditionReview.auditionId}</td>
+                            <td>{auditionReview.Review}</td>
+
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>  
+                          <td colSpan={2}>There are no reviewed auditions</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
+                </div>
+
+                <div style={divStyle}>
+                  <h3>Festival applications</h3>
+                  <table>
+                    <tbody>{
+                      showFestivalApplicationReview.length > 0 ? (
+                        showFestivalApplicationReview.map(showFestivalApplicationReview => (
+
+                          <tr key={showFestivalApplicationReview.reviewerid}>
+                            <td>{showFestivalApplicationReview.showfestivalapplicationid}</td>
+                            <td>{showFestivalApplicationReview.acceptable}</td>
+
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}>There are no reviewed auditions</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
+                </div>
+              </div>
+
             </div>
+          )
+        }
+      </div>
     </div>
 
 

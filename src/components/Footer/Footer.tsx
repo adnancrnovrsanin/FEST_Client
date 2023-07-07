@@ -27,26 +27,12 @@ const Footer: React.FC = () => {
           </p>
         </div>
         <div className="footer-section">
-          <h3>Calendar</h3>
+          <h3>Privacy and Policy</h3>
           <p>
-            Upcoming shows, events, and performances. Check the calendar{' '}
-            <a href="/calendar">here</a>.
+            Terms and conditions <a href="/policy">here</a>.
           </p>
         </div>
-        <div className="footer-section">
-          <h3>Actors</h3>
-          <p>
-            Information about the theater's talented actors and performers.
-            Meet our actors <a href="/actors">here</a>.
-          </p>
-        </div>
-        <div className="footer-section">
-          <h3>Theaters</h3>
-          <p>
-            A list of theaters associated with the theater company. Explore our
-            theaters <a href="/theaters">here</a>.
-          </p>
-        </div>
+        
       </div>
     </footer>
   );
