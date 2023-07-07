@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './Profile.css';
 import slika from './download.jpg'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../../stores/store';
 import UserStore from '../../stores/userStore';
 import { act } from 'react-dom/test-utils';
@@ -13,6 +13,7 @@ import { observer } from 'mobx-react-lite';
 const Profile = () => {
   const { id } = useParams();
   const { profileStore, userStore } = useStore()
+  const navigate = useNavigate();
 
   const { reviewer, getReviewer, loading, photos, getPhoto, auditionReview, getAuditionReview, showFestivalApplicationReview, getShowFestivalApplicationReview } = profileStore
   const { isLoggedIn, user } = userStore
@@ -49,7 +50,9 @@ const Profile = () => {
           </div>
         </div>
         <div className='button-content'> 
-        <button className="btn btn-edit"><a href="">Edit</a></button>
+        <button className="btn btn-edit" onClick={() => navigate(`/profile/editreviewer/${id}`)}>
+          Edit
+          </button>
         </div>
       </div>
       <div>

@@ -1,7 +1,8 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './Profile.css';
+
 import slika from './download.jpg'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../../stores/store';
 import UserStore from '../../stores/userStore';
 import { act } from 'react-dom/test-utils';
@@ -12,6 +13,8 @@ import { observer } from 'mobx-react-lite';
 
 const Profile = () => {
   const { id } = useParams();
+const navigate = useNavigate();
+
   const { profileStore, userStore } = useStore()
   const { manager, getManager, loading, photos, getPhoto } = profileStore
   const { isLoggedIn, user } = userStore
@@ -48,7 +51,7 @@ console.log(manager)
           </div>
         </div>
         <div className='button-content'> 
-        <button className="btn btn-edit"><a href="">Edit</a></button>
+        <button className="btn btn-edit"  onClick={() => navigate(`/profile/editmanager/${id}`)}>Edit</button>
         </div>
       </div>
       <div>

@@ -1,17 +1,20 @@
 import React from 'react';
 import './CurrentShows.css';
+import slika from './download.jpg'
+import slika1 from './ra.jpg'
+
 
 const CurrentShows: React.FC = () => {
   const currentShows = [
     {
-      title: 'Show Title 1',
-      image: 'path/to/show1.jpg',
-      date: 'June 30, 2023',
-      location: 'Theater A',
+      title: 'Hamlet',
+      image: slika,
+      date: 'July 30, 2023',
+      location: 'Novi Pazar',
     },
     {
-      title: 'Show Title 2',
-      image: 'path/to/show2.jpg',
+      title: 'Romeo i Julia',
+      image: slika,
       date: 'July 15, 2023',
       location: 'Theater B',
     },
@@ -21,11 +24,11 @@ const CurrentShows: React.FC = () => {
   return (
     <section className="current-shows">
       <div className="container">
-        <h2>Current Shows</h2>
+        <h2>Incoming shows</h2>
         <div className="show-list">
           {currentShows.map((show, index) => (
             <div className="show-card" key={index}>
-              <img src={show.image} alt={show.title} />
+              <img src={slika} alt={show.title} />
               <div className="show-details">
                 <h3>{show.title}</h3>
                 <p>Date: {show.date}</p>

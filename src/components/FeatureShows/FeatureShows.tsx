@@ -1,18 +1,19 @@
 import React from 'react';
 import './FeatureShows.css';
+import slika1 from './ra.jpg'
 
 const FeaturedShows: React.FC = () => {
   const featuredShows = [
     {
-      title: 'Show Title 1',
-      image: 'path/to/show1.jpg',
+      title: 'Labudovo Jezero',
+      image: slika1,
       date: 'June 30, 2023',
       location: 'Theater A',
     },
     {
-      title: 'Show Title 2',
-      image: 'path/to/show2.jpg',
-      date: 'July 15, 2023',
+      title: 'Cica Gorio',
+      image: slika1,
+      date: 'May 15, 2023',
       location: 'Theater B',
     },
     // Add more show objects as needed
@@ -21,11 +22,11 @@ const FeaturedShows: React.FC = () => {
   return (
     <section className="featured-shows">
       <div className="container">
-        <h2>Featured Shows</h2>
+        <h2>Past Shows</h2>
         <div className="show-list">
           {featuredShows.map((show, index) => (
             <div className="show-card" key={index}>
-              <img src={show.image} alt={show.title} />
+              <img src={slika1} alt={show.title} />
               <div className="show-details">
                 <h3>{show.title}</h3>
                 <p>Date: {show.date}</p>

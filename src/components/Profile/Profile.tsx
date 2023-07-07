@@ -130,10 +130,10 @@ const Profile = () => {
                       auditionsnotreviewed.length > 0 ? (
                         auditionsnotreviewed.map(reviewed => (
 
-                          <tr key={reviewed.actorId}>
-                            <td>{reviewed.averageReview}</td>
-                            <td>{reviewed.description}</td>
-                            <td>{reviewed.email}</td>
+                          <tr key={reviewed.auditionId  }>
+                            <p>{reviewed.averageReview}</p>
+                            <p>{reviewed.description}</p>
+                            <p>{reviewed.email}</p>
                             <td>{reviewed.name}</td>
                             <td>{reviewed.roleName}</td>
                             <td>{reviewed.showName}</td>
@@ -143,7 +143,7 @@ const Profile = () => {
                         ))
                       ) : (
                         <tr>
-                          <td colSpan={2}> There are no unreviewed auditions</td>
+                          <td colSpan={2}>There are no unreviewed auditions</td>
                         </tr>
                       )
 
@@ -159,7 +159,7 @@ const Profile = () => {
                       actingroles.length > 0 ? (
                         actingroles.map(role => (
 
-                          <tr key={role.actor.id}>
+                          <tr key={role.id}>
                             <td>{role.showRoleName}</td>
                             <td>{role.pay}</td>
                           </tr>
