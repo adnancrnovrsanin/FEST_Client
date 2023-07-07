@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import * as Yup from 'yup';
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const validate = Yup.object({
     name: Yup.string()
@@ -45,7 +44,7 @@ const AdminCreateFestival = () => {
                 if (id) setSelectedFestival(festivals.find(f => f.id === id) ?? null);
             }
         )();
-    }, [id]);
+    }, [festivals, getTheatres, id]);
 
     const initialValues: Festival = {
         id: selectedFestival === null ? "" : selectedFestival.id,
@@ -126,7 +125,7 @@ const AdminCreateFestival = () => {
                                 options={theatres}
                                 getOptionLabel={(option) => option.name}
                                 isOptionEqualToValue={(option, value) => option.id === value.id}
-                                onChange={(event: any, newValue: Theatre | null) => {
+                                onChange={(_event, newValue: Theatre | null) => {
                                     setFieldValue("organizer", newValue);
                                 }}
                                 renderInput={(params) => (

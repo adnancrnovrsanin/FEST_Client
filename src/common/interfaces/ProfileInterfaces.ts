@@ -1,4 +1,3 @@
-import { ActorShowRole } from "./ActorShowRole";
 import { Theatre } from "./TheatreInterfaces";
 import { Role } from "./UserInterfaces";
 

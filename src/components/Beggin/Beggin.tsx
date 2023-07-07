@@ -1,4 +1,3 @@
-import React from 'react';
 import slika from '../Beggin/Sinatra.jpg'
 
 const Beggin = () => {

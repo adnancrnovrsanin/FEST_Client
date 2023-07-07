@@ -7,7 +7,7 @@ import InitialLoader from "../../components/InitialLoader";
 import * as Yup from 'yup';
 import { Form, Formik } from "formik";
 import CustomTextInput from "../../common/form/CustomTextInput/CustomTextInput";
-import { DatePicker, DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import "./style.css";
@@ -69,6 +69,9 @@ const EditSchedule = () => {
                             showId: selectedSchedule.showId,
                             festivalName: selectedSchedule.festivalName,
                             theatreName: selectedSchedule.theatreName,
+                            showAdditionalInformation: selectedSchedule.showAdditionalInformation,
+                            managerEmail: selectedSchedule.managerEmail,
+                            numberOfActors: selectedSchedule.numberOfActors,
                         }
 
                         editSchedule(newSchedule).then(() => {

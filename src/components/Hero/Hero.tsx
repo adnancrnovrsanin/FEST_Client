@@ -1,41 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Hero.css'; 
 import slika from './PowerPraetorianRomanlegionaryandredcloakarmorandsword.jpg'
 
-interface Slide {
-  id: number;
-  story: string;
-  director: string;
-  runningTime: string;
-}
-
 const Hero: React.FC = () => {
-  const slides: Slide[] = [
-    {
-      id: 1,
-      story: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      director: 'John Doe',
-      runningTime: '2 hours 30 minutes',
-    },
-    {
-      id: 2,
-      story: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
-      director: 'Jane Smith',
-      runningTime: '2 hours 15 minutes',
-    },
-    // Add more slides as needed
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
-  };
-
   return (
     <div className="hero-container"  style={{ backgroundImage: slika}}>
       <h1>Welcome to our Theatre</h1>
@@ -49,10 +16,10 @@ const Hero: React.FC = () => {
           <p>120 minutes</p>
         </div>
         <div className="arrows">
-          <span className="arrow left" onClick={handlePrevSlide}>
+          <span className="arrow left">
             &#8249;
           </span>
-          <span className="arrow right" onClick={handleNextSlide}>
+          <span className="arrow right">
             &#8250;
           </span>
         </div>

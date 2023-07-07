@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../stores/store";
 import { Login } from "../../components/Login/Login";
 import './style.css';
 

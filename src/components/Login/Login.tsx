@@ -2,7 +2,6 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './style.css';
 import CustomTextInput from '../../common/form/CustomTextInput/CustomTextInput';
-import CustomTextAreaInput from '../../common/form/CustomTextAreaInput/CustomTextAreaInput';
 import { LoginRequestDto } from '../../common/interfaces/AuthInterfaces';
 import { useStore } from '../../stores/store';
 import { Typography } from '@mui/material';
@@ -33,7 +32,7 @@ export const Login = () => {
       validationSchema={validate}
       onSubmit={(values, { setErrors }) => {
         login(values.email, values.password)
-          .catch(error => {
+          .catch(() => {
             setErrors({ error: 'Invalid email or password' });
           });
       }}

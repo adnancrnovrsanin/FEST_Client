@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import './style.css';
 import { useStore } from "../../stores/store";
 import { useEffect } from "react";
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import InitialLoader from "../../components/InitialLoader";
 import ScheduleCard from "../../components/ScheduleCard";

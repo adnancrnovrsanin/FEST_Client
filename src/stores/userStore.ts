@@ -1,14 +1,14 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Role, User } from "../common/interfaces/UserInterfaces";
 import agent from "../api/agent";
-import { AuthUserDto, LoginRequestDto, RegisterRequestDto } from "../common/interfaces/AuthInterfaces";
+import { AuthUserDto, LoginRequestDto } from "../common/interfaces/AuthInterfaces";
 import { store } from "./store";
 import { router } from "../router/Routes";
 
 export default class UserStore {
     user: User | null = null;
     loading = false;
-    refreshTokenTimeout: any;
+    refreshTokenTimeout: NodeJS.Timeout | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -114,6 +114,7 @@ export default class UserStore {
     }
 
     private stopRefreshTokenTimer = () => {
-        clearTimeout(this.refreshTokenTimeout);
+        if (this.refreshTokenTimeout)
+            clearTimeout(this.refreshTokenTimeout);
     };
 }

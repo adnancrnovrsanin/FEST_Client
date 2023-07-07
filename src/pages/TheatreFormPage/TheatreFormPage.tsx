@@ -6,7 +6,7 @@ import InitialLoader from "../../components/InitialLoader";
 import './style.css';
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
-import { CreateTheatreDto, EditTheatreDto, Theatre, TheatreFormValues } from "../../common/interfaces/TheatreInterfaces";
+import { CreateTheatreDto, Theatre, TheatreFormValues } from "../../common/interfaces/TheatreInterfaces";
 import CustomTextInput from "../../common/form/CustomTextInput/CustomTextInput";
 
 const validate = Yup.object({
@@ -29,7 +29,7 @@ const TheatreFormPage = () => {
 
     useEffect(() => {
         if (id) setSelectedTheatre(theatres.find(t => t.id === id) ?? null);
-    }, [id]);
+    }, [id, theatres]);
 
     if (loading) return <InitialLoader adding="" />
 
@@ -71,7 +71,7 @@ const TheatreFormPage = () => {
                     } 
                 }}
             >
-                {({ values, setFieldValue, errors, isSubmitting, dirty, touched }) => (
+                {({ isSubmitting, dirty }) => (
                     <Form className="theatreForm">
                         <CustomTextInput label="Name" name="name" placeholder="Enter name" />
                         <CustomTextInput label="Address" name="address" placeholder="Enter address" />

@@ -1,10 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { API_URL } from '../common/constants';
 import { store } from '../stores/store';
 import { toast } from 'react-toastify';
 import { AuthUserDto, LoginRequestDto, LoginResponseDto, RegisterRequestDto } from '../common/interfaces/AuthInterfaces';
-import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, Festival, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
-import { User } from '../common/interfaces/UserInterfaces';
+import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
 import { Audition, CreateAuditionDto, CreateAuditionReviewDto } from '../common/interfaces/AuditionInterfaces';
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
@@ -17,7 +15,7 @@ import { CreateShowRoleDto } from '../common/interfaces/ShowRoleInterfaces';
 import { AuditionReviewDto } from '../common/interfaces/AuditionReviewDto';
 import { ShowFestivalApplicationReviewDto } from '../common/interfaces/ShowFestivalApplicationReviewDto';
 
-axios.defaults.baseURL = API_URL;
+axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import './CurrentShows.css';
-import slika from './download.jpg'
-import slika1 from './ra.jpg'
-
+import slika from './download.jpg';
 
 const CurrentShows: React.FC = () => {
   const currentShows = [

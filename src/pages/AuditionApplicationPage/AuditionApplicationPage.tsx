@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import './style.css';
 import AuditionVideoUpload from "../../components/AuditionVideoUpload/AuditionVideoUpload";
 import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as Yup from 'yup';
 import CustomTextAreaInput from "../../common/form/CustomTextAreaInput/CustomTextAreaInput";
 import { useStore } from "../../stores/store";

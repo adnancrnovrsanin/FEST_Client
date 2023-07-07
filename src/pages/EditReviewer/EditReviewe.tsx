@@ -1,17 +1,14 @@
 import { observer } from "mobx-react-lite";
-import { ShowSchedule, ShowScheduleDto } from "../../common/interfaces/ShowInterfaces";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../../stores/store";
-import { useEffect, useState } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import * as Yup from 'yup';
 import { Form, Formik } from "formik";
 import CustomTextInput from "../../common/form/CustomTextInput/CustomTextInput";
-import { DatePicker, DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import moment from "moment";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import "./style.css";
-import { ActorProfile, ReviewerProfile } from "../../common/interfaces/ProfileInterfaces";
+import { ReviewerProfile } from "../../common/interfaces/ProfileInterfaces";
 
 interface EditActorFormValues {
     surname : string;
@@ -29,7 +26,7 @@ const validate = Yup.object({
 });
 
 const EditReviewer = () => {
-    const { showStore,profileStore } = useStore();
+    const { profileStore } = useStore();
 const {reviewer,updateReviewer} = profileStore
     const { id } = useParams();
     const navigate = useNavigate();
@@ -69,7 +66,7 @@ const {reviewer,updateReviewer} = profileStore
                     }}
                 >
                     {
-                        ({ values, setFieldValue, isSubmitting, dirty }) => (
+                        ({ isSubmitting, dirty }) => (
                             <Form className="scheduleEditForm">
                                 <CustomTextInput name="name" label="Name:" placeholder="Enter the name" />
                                 <CustomTextInput name="surname" label="Surname:" placeholder="Enter the length of play" />

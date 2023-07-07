@@ -4,7 +4,7 @@ import { useStore } from "../../stores/store";
 import { useEffect, useState } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import './style.css';
-import { Box, Rating, Typography } from "@mui/material";
+import { Rating, Typography } from "@mui/material";
 import ReactPlayer from "react-player";
 
 const AuditionPage = () => {
@@ -114,7 +114,7 @@ const AuditionPage = () => {
                     },
                     marginInline: 'auto',
                 }}
-                onChange={(event, newValue) => {
+                onChange={(_event, newValue) => {
                     setTempRating(newValue);
                     console.log(newValue);
                 }}

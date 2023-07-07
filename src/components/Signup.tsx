@@ -34,7 +34,7 @@ export const Signup = () => {
         console.log(values)
       }}
     >
-      {formik => (
+      {() => (
         <div>
           <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
           <Form>

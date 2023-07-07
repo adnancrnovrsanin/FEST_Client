@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { ActorProfile,ReviewerProfile,ManagerProfile} from "../common/interfaces/ProfileInterfaces";
 import agent from "../api/agent";
 import { ActorShowRole } from "../common/interfaces/ActorShowRole";
-import { Audition } from "../common/interfaces/AuditionInterfaces";
 import { Photo } from "../common/interfaces/Photo";
 import { ActorShowRoleAudition } from "../common/interfaces/ActorShowRoleAudition";
 import { AuditionReviewDto } from "../common/interfaces/AuditionReviewDto";

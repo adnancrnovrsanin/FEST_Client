@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 import { useStore } from "../../stores/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import './style.css';
 import { Form, Formik } from "formik";
@@ -68,7 +68,7 @@ const CreateShowRole = () => {
                                 showRoleName: values.showRoleName,
                                 pay: values.pay
                             }
-                            await createShowRole(request).catch(error => setErrors({ error: "Problem with creating the role, check your input and try again" }));
+                            await createShowRole(request).catch(() => setErrors({ error: "Problem with creating the role, check your input and try again" }));
                         }
                     )();
                 }}

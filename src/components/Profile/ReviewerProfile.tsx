@@ -1,13 +1,10 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './Profile.css';
 import slika from './download.jpg'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../../stores/store';
-import UserStore from '../../stores/userStore';
-import { act } from 'react-dom/test-utils';
 import InitialLoader from '../InitialLoader';
 import { Role } from '../../common/interfaces/UserInterfaces';
-import { Box, Tab, Tabs } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 
 const Profile = () => {
@@ -15,7 +12,7 @@ const Profile = () => {
   const { profileStore, userStore } = useStore()
   const navigate = useNavigate();
 
-  const { reviewer, getReviewer, loading, photos, getPhoto, auditionReview, getAuditionReview, showFestivalApplicationReview, getShowFestivalApplicationReview } = profileStore
+  const { reviewer, getReviewer, loading, photos, getPhoto, auditionReview, showFestivalApplicationReview } = profileStore
   const { isLoggedIn, user } = userStore
   const divStyle = {
     backgroundColor: '#f1f1f1',
@@ -30,10 +27,6 @@ const Profile = () => {
   if (loading) return <InitialLoader adding='reviewer' />
 
   if (!reviewer) return <h1>404 not found</h1>
-
-  function handleChange(event: SyntheticEvent<Element, Event>, value: any): void {
-    throw new Error('Function not implemented.');
-  }
 
   return (
     <div className="profile-container">

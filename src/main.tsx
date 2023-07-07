@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { StoreContext, store } from './stores/store.ts'
 import { RouterProvider } from 'react-router-dom'
