@@ -27,6 +27,13 @@ import RequireActor from "./RequireActor";
 import AuditionApplicationPage from "../pages/AuditionApplicationPage/AuditionApplicationPage";
 import ShowRoleAuditionsPage from "../pages/ShowRoleAuditionsPage/ShowRoleAuditionsPage";
 import AuditionPage from "../pages/AuditionPage/AuditionPage";
+import AboutUsPage from "../pages/AboutUsPage/AboutUsPage";
+import JourneyPage from "../pages/JourneyPage/JourneyPage";
+import TermsAndConditionsPage from "../pages/PolicyPage/PolicyPage";
+import EditActor from "../pages/EditActor/EditActor";
+import SettingsPage from "../pages/SettingsPage/SettingsPage";
+import EditReviewe from "../pages/EditReviewer/EditReviewe";
+import EditManager from "../pages/EditManager/EditManager";
 
 export const routes: RouteObject[] = [
     {
@@ -68,6 +75,14 @@ export const routes: RouteObject[] = [
             {path: '/shows', element: <ShowSearchPage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},
+            {path: '/about-us', element: <AboutUsPage />},
+            {path: '/journey', element: <JourneyPage />},
+            {path: '/policy', element: <TermsAndConditionsPage />},
+            {path: '/settings', element: <SettingsPage/>},
+            {path: '/profile/editactor/:id', element: <EditActor/>},
+            {path: '/profile/editreviewer/:id', element: <EditReviewe/>},
+            {path: '/profile/editmanager/:id', element: <EditManager/>}
+
         ]
     }
 ];

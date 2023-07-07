@@ -42,11 +42,11 @@ const Hero: React.FC = () => {
       <div className="slider">
         <div className="slide">
           <h2>Story:</h2>
-          <p>Prica</p>
+          <p>Spartan</p>
           <h2>Director:</h2>
-          <p>Samir Babo</p>
+          <p>Adnan Crnovršanin</p>
           <h2>Running Time:</h2>
-          <p>100 sati</p>
+          <p>120 minutes</p>
         </div>
         <div className="arrows">
           <span className="arrow left" onClick={handlePrevSlide}>
@@ -57,8 +57,8 @@ const Hero: React.FC = () => {
           </span>
         </div>
       </div>
-      <button className="hero-button">Get Tickets</button>
     </div>
+    
   );
 };
 

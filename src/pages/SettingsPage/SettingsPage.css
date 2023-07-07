@@ -1,0 +1,13 @@
+.btn-edit1{
+    background-color: crimson;
+    color: #fff;
+  }
+  .btn-edit1:hover{
+    background-color: red;
+  }
+  .containerb{
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+  }

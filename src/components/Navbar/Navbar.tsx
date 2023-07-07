@@ -96,7 +96,7 @@ const Navbar = () => {
                                                             <li><a className="dropdown-item" href={`/profile/reviewer/${user.id}`}>Profile</a></li>
                                                          )
                                                     }
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a className="dropdown-item" href={`/settings`}>Settings</a></li>
                                                     <li><hr className="dropdown-divider" /></li>
                                                     <li><a className="dropdown-item" onClick={() => logout()}>Logout</a></li>
                                                 </ul>

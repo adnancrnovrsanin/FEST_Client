@@ -1,7 +1,8 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './Profile.css';
+
 import slika from './download.jpg'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../../stores/store';
 import UserStore from '../../stores/userStore';
 import { act } from 'react-dom/test-utils';
@@ -12,8 +13,10 @@ import { observer } from 'mobx-react-lite';
 
 const Profile = () => {
   const { id } = useParams();
+const navigate = useNavigate();
+
   const { profileStore, userStore } = useStore()
-  const { manager, getManager, loading } = profileStore
+  const { manager, getManager, loading, photos, getPhoto } = profileStore
   const { isLoggedIn, user } = userStore
   const divStyle = {
     backgroundColor: '#f1f1f1',
@@ -23,7 +26,8 @@ const Profile = () => {
 
 
   useEffect(() => { if (id) getManager(id) }, [getManager, id])
-
+  useEffect(() => { if (id) getPhoto(id) }, [getPhoto, id])
+console.log(manager)
   if (loading) return <InitialLoader adding='manager' />
 
   if (!manager) return <h1>404 not found</h1>
@@ -43,34 +47,66 @@ const Profile = () => {
             <div>
               <p>Email: {manager.email}</p>
             </div>
-            
+
           </div>
+        </div>
+        <div className='button-content'> 
+        <button className="btn btn-edit"  onClick={() => navigate(`/profile/editmanager/${id}`)}>Edit</button>
         </div>
       </div>
       <div>
-              {
-                isLoggedIn && user?.role === Role.THEATRE_MANAGER && (
-                  <div>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <div style={divStyle}>
-        <h3>Pictures</h3>
-        <p>This is the content of Div 1.</p>
-      </div>
+        {
+          isLoggedIn && user?.role === Role.THEATRE_MANAGER && (
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={divStyle}>
+                  <h3>Photos</h3>
+                  <table>
+                    <tbody>{
+                      photos.length > 0 ? (
+                        photos.map(photo => (
 
-      <div style={divStyle}>
-        <h3>Auditions</h3>
-        <p>This is the content of Div 2.</p>
-      </div>
+                          <tr key={photo.id}>
+                            <td>{photo.url}</td>
 
-      <div style={divStyle}>
-        <h3>Roles</h3>
-      </div>
-    </div>
-    
-                  </div>
-                )
-              }
+
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2}> There are no photos</td>
+                        </tr>
+                      )
+
+
+                    }
+                    </tbody></table>
+                </div>
+
+                <div style={divStyle}>
+                  <h3>Menaged Theatre</h3>
+                  <table>
+                    <tbody>{
+
+
+                      <tr >
+                        <p>{manager.managedTheatre.address}</p>
+                        <p>{manager.managedTheatre.managerEmail}</p>
+                        <p>{manager.managedTheatre.name}</p>
+                        <p>{manager.managedTheatre.phoneNumber}</p>
+                        <p>{manager.managedTheatre.yearOfCreation}</p>
+                      </tr>
+                    }
+                    </tbody></table>
+                </div>
+
+
+              </div>
+
             </div>
+          )
+        }
+      </div>
     </div>
 
 

@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <div>
             <HeroSection/>
-            <FeaturedShows/>
+    <FeaturedShows/>
             <CurrentShows/>
         </div>
     );
