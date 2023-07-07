@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import InitialLoader from "../../components/InitialLoader";
 import ScheduleCard from "../../components/ScheduleCard";
 import './style.css';
+import { useNavigate } from "react-router-dom";
 
 const ShowSearchPage = () => {
+    const navigate = useNavigate();
     const { showStore } = useStore();
     const { theatreShows, getAllShows, loading } = showStore;
 
@@ -28,7 +30,7 @@ const ShowSearchPage = () => {
                             <ScheduleCard 
                                 show={show}
                                 key={show.id}
-                                // OnClick={() => navigate(`/shows/${show.id}`)}
+                                onClick={() => navigate(`/shows/${show.id}`)}
                             />
                         ))
                     ) : (

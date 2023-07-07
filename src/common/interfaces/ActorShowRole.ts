@@ -1,8 +1,11 @@
-import { ActorProfile } from "./ProfileInterfaces";
 import { User } from "./UserInterfaces";
 
 export interface ActorShowRole{
-    actor : User;
-    showRoleName : string;
-    pay : number;
+    id: string,
+    showId: string,
+    roleId: string,
+    showName: string,
+    showRoleName: string,
+    actor: User | null,
+    pay: number,
 }

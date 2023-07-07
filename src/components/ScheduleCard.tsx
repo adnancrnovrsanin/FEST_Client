@@ -13,7 +13,7 @@ const ScheduleCard = ({ show, onClick }: Props) => {
     return (
         <Card sx={{ 
             width: "300px",
-            height: "250px",
+            height: "fit-content",
             margin: "10px",
             boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
             borderRadius: "10px",
@@ -69,16 +69,22 @@ const ScheduleCard = ({ show, onClick }: Props) => {
                     </Typography>
 
                     {
-                        show.timeOfPlay !== null && (
-                            <Typography
-                                sx={{
-                                    fontStyle: "Poppins, sans-serif",
-                                }}
-                            >
-                                Date and time of performance: <span style={{ fontWeight: "bold" }}>{moment(show.timeOfPlay).format("DD/MM/YYYY HH:mm")}</span>
-                            </Typography>
-                        )
+                        <Typography
+                            sx={{
+                                fontStyle: "Poppins, sans-serif",
+                            }}
+                        >
+                            Date and time of performance: <span style={{ fontWeight: "bold" }}>{show.timeOfPlay === null ? "Coming soon" : moment(show.timeOfPlay).format("DD/MM/YYYY HH:mm")}</span>
+                        </Typography>
                     }
+
+                    <Typography
+                        sx={{
+                            fontStyle: "Poppins, sans-serif",
+                        }}
+                    >
+                        Number of actors: <span style={{ fontWeight: "bold" }}>{show.numberOfActors}</span>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
