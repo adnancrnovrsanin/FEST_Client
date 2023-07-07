@@ -31,6 +31,8 @@ import JourneyPage from "../pages/JourneyPage/JourneyPage";
 import TermsAndConditionsPage from "../pages/PolicyPage/PolicyPage";
 import EditActor from "../pages/EditActor/EditActor";
 import SettingsPage from "../pages/SettingsPage/SettingsPage";
+import EditReviewe from "../pages/EditReviewer/EditReviewe";
+import EditManager from "../pages/EditManager/EditManager";
 
 export const routes: RouteObject[] = [
     {
@@ -74,7 +76,10 @@ export const routes: RouteObject[] = [
             {path: '/journey', element: <JourneyPage />},
             {path: '/policy', element: <TermsAndConditionsPage />},
             {path: '/settings', element: <SettingsPage/>},
-            {path: '/profile/editactor/:id', element: <EditActor/>}
+            {path: '/profile/editactor/:id', element: <EditActor/>},
+            {path: '/profile/editreviewer/:id', element: <EditReviewe/>},
+            {path: '/profile/editmanager/:id', element: <EditManager/>}
+
 
 
 
