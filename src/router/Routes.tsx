@@ -25,6 +25,7 @@ import CreateShowRole from "../pages/CreateShowRole/CreateShowRole";
 import ShowSchedulePage from "../pages/ShowSchedule/ShowSchedulePage";
 import RequireActor from "./RequireActor";
 import AuditionApplicationPage from "../pages/AuditionApplicationPage/AuditionApplicationPage";
+import ShowRoleAuditionsPage from "../pages/ShowRoleAuditionsPage/ShowRoleAuditionsPage";
 
 export const routes: RouteObject[] = [
     {
@@ -54,7 +55,8 @@ export const routes: RouteObject[] = [
                 {path: '/show/:id/createRole', element: <CreateShowRole />}
             ]},
             {element: <RequireActor />, children: [
-                {path: '/shows/:id/apply', element: <AuditionApplicationPage />}
+                {path: '/shows/:id/apply', element: <AuditionApplicationPage />},
+                {path: '/showrole/auditions', element: <ShowRoleAuditionsPage />},
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},
