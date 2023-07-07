@@ -6,7 +6,7 @@ import { AuthUserDto, LoginRequestDto, LoginResponseDto, RegisterRequestDto } fr
 import { CreateFestivalDto, CreateShowFestivalApplicationReviewDto, Festival, FestivalDto, ShowFestivalApplication, ShowFestivalApplicationDto } from '../common/interfaces/FestivalInterfaces';
 import { User } from '../common/interfaces/UserInterfaces';
 import { CreateTheatreDto, Theatre } from '../common/interfaces/TheatreInterfaces';
-import { Audition, CreateAuditionDto } from '../common/interfaces/AuditionInterfaces';
+import { Audition, CreateAuditionDto, CreateAuditionReviewDto } from '../common/interfaces/AuditionInterfaces';
 import { ActorProfile, ManagerProfile, ReviewerProfile } from '../common/interfaces/ProfileInterfaces';
 import { ShowScheduleDto } from '../common/interfaces/ShowInterfaces';
 import { ActorShowRole } from '../common/interfaces/ActorShowRole';
@@ -114,6 +114,9 @@ const ReviewerRequests = {
 
 const AuditionRequests = {
     create: (audition: CreateAuditionDto) => requests.post<void>('/audition', audition),
+    getAll: () => requests.get<Audition[]>('/audition'),
+    get: (id: string) => requests.get<Audition>(`/audition/${id}`),
+    reviewRequest: (request: CreateAuditionReviewDto) => requests.post<void>('/audition/review', request),
 };
 
 const ScheduleRequests = {

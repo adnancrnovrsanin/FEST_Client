@@ -9,6 +9,12 @@ const ReviewerNav = () => {
                     Festival applications
                 </Link>
             </li>
+
+            <li className="nav-item">
+                <Link to="/showrole/auditions" className="nav-link" aria-current="page">
+                    Show audition applications
+                </Link>
+            </li>
         </>
     );
 }

@@ -33,8 +33,6 @@ const FestivalPage = () => {
         />
     );
 
-    console.log(selectedFestival);
-
     return (
         <div className="festivalPageContainer">
             <div className="festivalHeader">

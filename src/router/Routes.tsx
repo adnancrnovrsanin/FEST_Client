@@ -21,11 +21,12 @@ import TheatreShows from "../pages/TheatreShows/TheatreShows";
 import ReviewerProfilePage from "../pages/ProfilePage/ReviewerProfilePage";
 import ManagerProfilePage from "../pages/ProfilePage/ManagerProfilePage";
 import RequireAuth from "./RequireAuth";
-
 import CreateShowRole from "../pages/CreateShowRole/CreateShowRole";
 import ShowSchedulePage from "../pages/ShowSchedule/ShowSchedulePage";
 import RequireActor from "./RequireActor";
 import AuditionApplicationPage from "../pages/AuditionApplicationPage/AuditionApplicationPage";
+import ShowRoleAuditionsPage from "../pages/ShowRoleAuditionsPage/ShowRoleAuditionsPage";
+import AuditionPage from "../pages/AuditionPage/AuditionPage";
 import AboutUsPage from "../pages/AboutUsPage/AboutUsPage";
 import JourneyPage from "../pages/JourneyPage/JourneyPage";
 import TermsAndConditionsPage from "../pages/PolicyPage/PolicyPage";
@@ -53,7 +54,9 @@ export const routes: RouteObject[] = [
             ]},
             {element: <RequireReviewer />, children: [
                 {path: '/festivals/applications', element: <FestivalApplications />},
-                {path: '/festivals/applications/:id', element: <FestivalApplication />}
+                {path: '/festivals/applications/:id', element: <FestivalApplication />},
+                {path: '/showrole/auditions', element: <ShowRoleAuditionsPage />},
+                {path: '/auditions/:id', element: <AuditionPage />},
             ]},
             {element: <RequireTheatreManager />, children: [
                 {path: '/shows/unappointed', element: <UnappointedShows />},
@@ -62,7 +65,7 @@ export const routes: RouteObject[] = [
                 {path: '/show/:id/createRole', element: <CreateShowRole />}
             ]},
             {element: <RequireActor />, children: [
-                {path: '/shows/:id/apply', element: <AuditionApplicationPage />}
+                {path: '/shows/:id/apply', element: <AuditionApplicationPage />},
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},
@@ -79,10 +82,6 @@ export const routes: RouteObject[] = [
             {path: '/profile/editactor/:id', element: <EditActor/>},
             {path: '/profile/editreviewer/:id', element: <EditReviewe/>},
             {path: '/profile/editmanager/:id', element: <EditManager/>}
-
-
-
-
 
         ]
     }

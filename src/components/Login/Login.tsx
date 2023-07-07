@@ -31,10 +31,9 @@ export const Login = () => {
         error: null
       }}
       validationSchema={validate}
-      onSubmit={(values, { setErrors, setSubmitting }) => {
+      onSubmit={(values, { setErrors }) => {
         login(values.email, values.password)
           .catch(error => {
-            setSubmitting(false);
             setErrors({ error: 'Invalid email or password' });
           });
       }}
