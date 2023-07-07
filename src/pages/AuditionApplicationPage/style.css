@@ -1,0 +1,13 @@
+.auditionApplicationPageContainer {
+    min-height: 100vh;
+    width: 60%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0;
+    gap: 2rem;
+}
+
+.descriptionForm {
+    margin: 2rem 0;
+}

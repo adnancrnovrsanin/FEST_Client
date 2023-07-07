@@ -13,6 +13,7 @@ import { ActorShowRole } from '../common/interfaces/ActorShowRole';
 
 import { Photo } from '../common/interfaces/Photo';
 import { ActorShowRoleAudition } from '../common/interfaces/ActorShowRoleAudition';
+import { CreateShowRoleDto } from '../common/interfaces/ShowRoleInterfaces';
 
 axios.defaults.baseURL = API_URL;
 
@@ -115,8 +116,16 @@ const ScheduleRequests = {
     editScheduleRequest: (schedule: ShowScheduleDto) => requests.put<void>('/schedule', schedule),
     getAllTheatreUnappointed: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/unappointed/${id}`),
     getAllTheatre: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/theatre/${id}`),
+    getAllFestival: (id: string) => requests.get<ShowScheduleDto[]>(`/schedule/festival/${id}`),
     getAll: () => requests.get<ShowScheduleDto[]>('/schedule'),
+    get: (id: string) => requests.get<ShowScheduleDto>(`/schedule/${id}`),
 };
+
+const ShowRoleRequests = {
+    create: (showRole: CreateShowRoleDto) => requests.post<void>('/showrole', showRole),
+    getShowRoles: (id: string) => requests.get<ActorShowRole[]>(`/showrole/show/${id}`),
+    get: (id: string) => requests.get<ActorShowRole>(`/showrole/${id}`),
+}
 
 const agent = {
     AccountRequests,
@@ -126,6 +135,7 @@ const agent = {
     ProfileRequests,
     ReviewerRequests,
     ScheduleRequests,
+    ShowRoleRequests,
 }
 
 export default agent;

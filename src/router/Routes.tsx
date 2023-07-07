@@ -18,10 +18,13 @@ import RequireTheatreManager from "./RequireTheatreManager";
 import UnappointedShows from "../pages/UnappointedShows/UnappointedShows";
 import EditSchedule from "../pages/EditSchedule/EditSchedule";
 import TheatreShows from "../pages/TheatreShows/TheatreShows";
-import ShowSchedule from "../pages/ShowSchedule/ShowSchedule";
 import ReviewerProfilePage from "../pages/ProfilePage/ReviewerProfilePage";
 import ManagerProfilePage from "../pages/ProfilePage/ManagerProfilePage";
 import RequireAuth from "./RequireAuth";
+import CreateShowRole from "../pages/CreateShowRole/CreateShowRole";
+import ShowSchedulePage from "../pages/ShowSchedule/ShowSchedulePage";
+import RequireActor from "./RequireActor";
+import AuditionApplicationPage from "../pages/AuditionApplicationPage/AuditionApplicationPage";
 
 export const routes: RouteObject[] = [
     {
@@ -47,13 +50,17 @@ export const routes: RouteObject[] = [
             {element: <RequireTheatreManager />, children: [
                 {path: '/shows/unappointed', element: <UnappointedShows />},
                 {path: '/shows/appointed', element: <TheatreShows />},
-                {path: '/shows/edit/schedule/:id', element: <EditSchedule />}
+                {path: '/shows/edit/schedule/:id', element: <EditSchedule />},
+                {path: '/show/:id/createRole', element: <CreateShowRole />}
+            ]},
+            {element: <RequireActor />, children: [
+                {path: '/shows/:id/apply', element: <AuditionApplicationPage />}
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},
             {path: '/festivals/:id/register', element: <FestivalRegisterPage />},
             {path: '/profile/actor/:id', element: <ProfilePage />},
-            {path: '/shows/:id', element: <ShowSchedule />},
+            {path: '/shows/:id', element: <ShowSchedulePage />},
             {path: '/shows', element: <ShowSearchPage />},
             {path: '/login', element: <LoginPage />},
             {path: '/shows', element: <ShowSearchPage />},

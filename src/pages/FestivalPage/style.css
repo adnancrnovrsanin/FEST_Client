@@ -3,7 +3,8 @@
     width: 75%;
     align-self: center;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 2rem 0;
 }
 
@@ -15,4 +16,23 @@
 .organizerDetails {
     display: flex;
     flex-direction: column;
+}
+
+.shows {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    place-items: center;
+    grid-gap: 1rem;
+    padding: 2rem 0;
+}
+
+.festivalHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.festivalShowsContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
 }

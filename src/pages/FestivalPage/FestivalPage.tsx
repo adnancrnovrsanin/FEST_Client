@@ -14,7 +14,7 @@ const FestivalPage = () => {
     const { festivalStore, userStore, showStore } = useStore();
     const { festivals } = festivalStore;
     const { isLoggedIn, user } = userStore;
-    const { getAllTheatreShows, loading, theatreShows } = showStore;
+    const { getAllFestivalShows, loading, festivalShows } = showStore;
 
     useEffect(() => { setSelectedFestival(festivals.find(f => f.id === id) ?? null) }, [festivals, id]);
 
@@ -22,8 +22,8 @@ const FestivalPage = () => {
 
     useEffect(() => {
         if (selectedFestival)
-            getAllTheatreShows(selectedFestival.id);
-    }, [selectedFestival, getAllTheatreShows]);
+            getAllFestivalShows(selectedFestival.id);
+    }, [selectedFestival, getAllFestivalShows]);
 
     if (selectedFestival === null) return (<div>404</div>);
 
@@ -33,50 +33,58 @@ const FestivalPage = () => {
         />
     );
 
+    console.log(selectedFestival);
+
     return (
         <div className="festivalPageContainer">
-            <div className="festivalDetails">
-                <h1>{selectedFestival.name}</h1>
-                <h4>{selectedFestival.startDate.toLocaleDateString()} - {selectedFestival.endDate.toLocaleDateString()}</h4>
-                <p>{selectedFestival.city}, {selectedFestival.zipCode}</p>
+            <div className="festivalHeader">
+                <div className="festivalDetails">
+                    <h1>{selectedFestival.name}</h1>
+                    <h4>{selectedFestival.startDate.toLocaleDateString()} - {selectedFestival.endDate.toLocaleDateString()}</h4>
+                    <p>{selectedFestival.city}, {selectedFestival.zipCode}</p>
+
+                    {
+                        isLoggedIn && user?.role === Role.THEATRE_MANAGER && (
+                            <>
+                                <div className="festivalActions">
+                                    <button onClick={() => navigate(`/festivals/${id}/register`)}>
+                                        Register your theatre's show
+                                    </button>
+                                </div>
+                            </>
+                        )
+                    }
+                </div>
 
                 {
-                    isLoggedIn && user?.role === Role.THEATRE_MANAGER && (
-                        <div className="festivalActions">
-                            <button onClick={() => navigate(`/festivals/${id}/register`)}>
-                                Register your theatre's show
-                            </button>
+                    selectedFestival.organizer && (
+                        <div className="organizerDetails">
+                            <h2>Organizer:</h2>
+                            <h3>{selectedFestival.organizer.name}</h3>
+                            <p>Theatre address: {selectedFestival.organizer.address}</p>
+                            <p>Theatre contact phone number: {selectedFestival.organizer.phoneNumber}</p>
                         </div>
                     )
                 }
             </div>
 
-            {
-                selectedFestival.organizer && (
-                    <div className="organizerDetails">
-                        <h2>Organizer:</h2>
-                        <h3>{selectedFestival.organizer.name}</h3>
-                        <p>Theatre address: {selectedFestival.organizer.address}</p>
-                        <p>Theatre contact phone number: {selectedFestival.organizer.phoneNumber}</p>
-                    </div>
-                )
-            }
-
-            <div className="shows">
+            <div className="festivalShowsContainer">
                 <h2>Shows that are available on this festival:</h2>
-                {
-                    theatreShows.length > 0 ? (
-                        theatreShows.map(show => (
-                            <ScheduleCard 
-                                show={show}
-                                key={show.id}
-                                // OnClick={() => navigate(`/shows/${show.id}`)}
-                            />
-                        ))
-                    ) : (
-                        <h3>No shows available</h3>
-                    )
-                }
+                <div className="shows">
+                    {
+                        festivalShows.length > 0 ? (
+                            festivalShows.map(show => (
+                                <ScheduleCard 
+                                    show={show}
+                                    key={show.id}
+                                    onClick={() => navigate(`/shows/${show.id}`)}
+                                />
+                            ))
+                        ) : (
+                            <h3>No shows available</h3>
+                        )
+                    }
+                </div>
             </div>
         </div>
     )

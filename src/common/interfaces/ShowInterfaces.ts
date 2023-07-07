@@ -2,7 +2,7 @@ export interface Show {
     id: string;
     serialNumber: number;
     name: string;
-    additionalInfo: string;
+    additionalInformation: string;
 }
 
 export interface ShowScheduleDto {
@@ -15,6 +15,9 @@ export interface ShowScheduleDto {
     theatreName: string;
     showId: string;
     showName: string;
+    showAdditionalInformation: string;
+    numberOfActors: number;
+    managerEmail: string;
 }
 
 export interface ShowSchedule {
@@ -27,4 +30,7 @@ export interface ShowSchedule {
     theatreName: string;
     showId: string;
     showName: string;
+    showAdditionalInformation: string;
+    numberOfActors: number;
+    managerEmail: string;
 }
