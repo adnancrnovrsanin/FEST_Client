@@ -47,6 +47,9 @@ console.log(manager)
 
           </div>
         </div>
+        <div className='button-content'> 
+        <button className="btn btn-edit"><a href="">Edit</a></button>
+        </div>
       </div>
       <div>
         {

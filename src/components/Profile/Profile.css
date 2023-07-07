@@ -70,4 +70,25 @@
   .bio p {
     font-size: 16px;
   }
+  .btn-edit {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .btn-edit a {
+    color: white;
+  }
   
+  .btn-edit:hover {
+    background-color: #0069d9;
+  }
+  .btn-edit1{
+    background-color: crimson;
+    color: #fff;
+  }
+  .btn-edit1:hover{
+    background-color: red;
+  }
+.content{
+  display: flex;
+  flex-direction: column;
+}

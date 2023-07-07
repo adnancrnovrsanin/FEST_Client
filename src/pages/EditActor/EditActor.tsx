@@ -11,12 +11,12 @@ import { DatePicker, DateTimePicker, LocalizationProvider } from "@mui/x-date-pi
 import moment from "moment";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import "./style.css";
-import { act } from "react-dom/test-utils";
+import { ActorProfile } from "../../common/interfaces/ProfileInterfaces";
 
-interface EditScheduleFormValues {
-    showName: string;
-    lengthOfPlay: number;
-    timeOfPlay: Date;
+interface EditActorFormValues {
+    surname : string;
+    name : string;
+    email : string;
 }
 
 const validate = Yup.object({
@@ -24,52 +24,46 @@ const validate = Yup.object({
         .required('Name is required'),
     lengthOfPlay: Yup.string()
         .required('Surname is required'),
+    timeOfPlay: Yup.string()
+        .required('Email is required')
 });
 
-const EditSchedule = () => {
-    const { profileStore } = useStore();
-    const {actor, updateActor } = profileStore;
+const EditActor = () => {
+    const { showStore,profileStore } = useStore();
+const {actor,updateActor} = profileStore
     const { id } = useParams();
     const navigate = useNavigate();
+  if (!actor) return <h1>404 not found</h1>
+    
 
-    useEffect(() => {
-        if (id) {
-            ;
-        }
-    }, [id, actor]);
-
-    if (!id ) return (
+    if (!id || !actor) return (
         <InitialLoader adding="actor"/>
     );
 
-    const initialValues: EditScheduleFormValues = {
-        showName: selectedSchedule.showName,
-        lengthOfPlay: selectedSchedule.lengthOfPlay,
-        timeOfPlay: selectedSchedule.timeOfPlay ?? new Date(),
+    const initialValues: EditActorFormValues = {
+        name: actor.name,
+        surname: actor.surname,
+        email: actor.email,
     }
 
     return (
         <div className="editSchedulePageContainer">
-            <h1>Edit Schedule</h1>
+            <h1>Edit Actor</h1>
 
             <LocalizationProvider dateAdapter={AdapterMoment}>
             <Formik
                     initialValues={initialValues}
                     validationSchema={validate}
                     onSubmit={values => {
-                        const newSchedule: ShowScheduleDto = {
-                            id: selectedSchedule.id,
-                            showName: values.showName,
-                            lengthOfPlay: values.lengthOfPlay,
-                            timeOfPlay: values.timeOfPlay.toISOString(),
-                            festivalId: selectedSchedule.festivalId,
-                            theatreId: selectedSchedule.theatreId,
-                            showId: selectedSchedule.showId,
-                            festivalName: selectedSchedule.festivalName,
-                            theatreName: selectedSchedule.theatreName,
+                        const newActor: ActorProfile = {
+                            id: actor.id,
+                            name : values.name,
+                            surname : values.surname,
+                            email : actor.email,
+                            role : actor.role,
                         }
 
-                        editSchedule(newSchedule).then(() => {
+                        updateActor(newActor).then(() => {
                             navigate("/");
                         });
                     }}
@@ -77,16 +71,11 @@ const EditSchedule = () => {
                     {
                         ({ values, setFieldValue, isSubmitting, dirty }) => (
                             <Form className="scheduleEditForm">
-                                <CustomTextInput name="showName" label="Name of the show:" placeholder="Enter the name of the show" readOnly/>
-                                <CustomTextInput name="lengthOfPlay" label="Length of the show (in minutes):" placeholder="Enter the length of play" type="number" readOnly />
-                                <DateTimePicker 
-                                    label="Start date"
-                                    value={moment(values.timeOfPlay)}
-                                    ampm={false}
-                                    onChange={(newValue) => {
-                                        setFieldValue("timeOfPlay", newValue?.toDate());
-                                    }}
-                                />
+                                <CustomTextInput name="name" label="Name:" placeholder="Enter the name" />
+                                <CustomTextInput name="surname" label="Surname:" placeholder="Enter the length of play" />
+                                <CustomTextInput name="email" label="Email:" placeholder="Enter the Email" readOnly />
+
+                                
 
                                 <button className="btn btn-dark mt-3" type="submit" disabled={isSubmitting || !dirty}>
                                     {
@@ -106,4 +95,4 @@ const EditSchedule = () => {
     )
 }
 
-export default observer(EditSchedule);
+export default observer(EditActor);
