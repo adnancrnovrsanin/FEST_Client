@@ -4,10 +4,10 @@ export interface Audition {
     name: string;
     surname: string;
     email: string;
-    videoUrl: string;
+    videoURL: string;
     description: string;
     showRoleId: string;
-    RoleName: string;
+    roleName: string;
     showId: string;
     showName: string;
     averageReview: number;
@@ -18,4 +18,10 @@ export interface CreateAuditionDto {
     videoUrl: string;
     description: string;
     showRoleId: string;
+}
+
+export interface CreateAuditionReviewDto {
+    auditionId: string;
+    reviewerId: string;
+    review: number;
 }

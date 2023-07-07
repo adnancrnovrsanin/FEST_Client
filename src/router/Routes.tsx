@@ -26,6 +26,7 @@ import ShowSchedulePage from "../pages/ShowSchedule/ShowSchedulePage";
 import RequireActor from "./RequireActor";
 import AuditionApplicationPage from "../pages/AuditionApplicationPage/AuditionApplicationPage";
 import ShowRoleAuditionsPage from "../pages/ShowRoleAuditionsPage/ShowRoleAuditionsPage";
+import AuditionPage from "../pages/AuditionPage/AuditionPage";
 
 export const routes: RouteObject[] = [
     {
@@ -46,7 +47,9 @@ export const routes: RouteObject[] = [
             ]},
             {element: <RequireReviewer />, children: [
                 {path: '/festivals/applications', element: <FestivalApplications />},
-                {path: '/festivals/applications/:id', element: <FestivalApplication />}
+                {path: '/festivals/applications/:id', element: <FestivalApplication />},
+                {path: '/showrole/auditions', element: <ShowRoleAuditionsPage />},
+                {path: '/auditions/:id', element: <AuditionPage />},
             ]},
             {element: <RequireTheatreManager />, children: [
                 {path: '/shows/unappointed', element: <UnappointedShows />},
@@ -56,7 +59,6 @@ export const routes: RouteObject[] = [
             ]},
             {element: <RequireActor />, children: [
                 {path: '/shows/:id/apply', element: <AuditionApplicationPage />},
-                {path: '/showrole/auditions', element: <ShowRoleAuditionsPage />},
             ]},
             {path: '/festivals', element: <FestivalSearchPage />},
             {path: '/festivals/:id', element: <FestivalPage />},

@@ -26,6 +26,13 @@ const AuditionVideoUpload = () => {
                         url={files[0].preview}
                         width='100%'
                         height='100%'
+                        config={{
+                            file: {
+                                attributes: {
+                                    crossOrigin: "true",
+                                }
+                            }
+                        }}
                         controls
                     />
                 ) : (
