@@ -131,7 +131,7 @@ const ShowSchedulePage = () => {
                                     fontWeight: 'bold'
                                 }}
                             >
-                                {`${showRole.showRoleName} ->`}
+                                {`${showRole.showRoleName} Pay: ${showRole.pay} ->`}
                             </Typography>
 
                             {

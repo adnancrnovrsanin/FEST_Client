@@ -37,7 +37,7 @@ export default class ShowRoleStore {
             runInAction(() => {
                 this.loading = false;
                 toast.success("Show role created successfully");
-                router.navigate(`/shows/${showRole.showId}`);
+                router.navigate(`/shows`);
             });
         } catch (error) {
             console.log(error);

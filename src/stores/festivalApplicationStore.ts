@@ -3,6 +3,7 @@ import agent from "../api/agent";
 import { store } from "./store";
 import { CreateShowFestivalApplicationReviewDto, ShowFestivalApplication } from "../common/interfaces/FestivalInterfaces";
 import { toast } from "react-toastify";
+import { router } from "../router/Routes";
 
 export default class FestivalApplicationStore {
     loading = false;
@@ -47,6 +48,7 @@ export default class FestivalApplicationStore {
             runInAction(() => {
                 this.loading = false;
                 toast.success("Successfully reviewed festival application!");
+                router.navigate("/festivals/applications");
             });
         } catch (error) {
             console.log(error);
